@@ -49,6 +49,34 @@ Incorrect way
 if(string1==string2)
 ```
 
+# Loops and Arrays
+
+## Arrays
+1. Unlike in C++ where based on declaration variables are allocated value in heap or stack, in C# this is handled by garbage collector.
+2. In C++ there is no boundry check where as in C# it returns exception
+3. In C++ arrays decays into pointer that's why we need to pass size too whereas this is not a case in C#, the length is carried along.
+
+### Passing arrays
+```
+// Method declaration
+int[] CreateArray()
+{
+    int[] numbers = { 1, 2, 3, 4, 5 };
+    return numbers;
+}
+
+// Method call
+int[] result = CreateArray()
+```
+Explaination: 
+In C#, the numbers array is not destroyed when the CreateArray method returns. This is because arrays in C# are reference types, and when you return an array from a method, you're returning a reference to the array's location in memory, not a copy of the array itself.
+
+<br>
+
+When you call CreateArray() and assign its result to result, result holds a reference to the same array that numbers refers to within the CreateArray method. Therefore, as long as there are references to the array, it remains alive in memory
+
+<br>
+
 
 
 
