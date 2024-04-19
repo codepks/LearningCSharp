@@ -78,7 +78,28 @@ When you call CreateArray() and assign its result to result, result holds a refe
 <br>
 
 
-
+# Reference Types and Value Types
+Refrence types are 
+1. Class Types
+```
+class MyClass { /* Class definition */ }
+MyClass obj = new MyClass();
+```
+2. Interface Types 
+```
+interface IMyInterface { /* Interface definition */ }
+class MyClass : IMyInterface { /* Class implements IMyInterface */ }
+IMyInterface obj = new MyClass();
+```
+3. Array Types : `int[] numbers = new int[5];`
+4. Delegate Types :
+```
+delegate void MyDelegate(int x);
+MyDelegate del = MyMethod;
+```
+5. String Type
+6. Dynamic Type : `dynamic dynObj = GetDynamicObject();`
+7. 
 
 
 
