@@ -56,7 +56,34 @@ if(string1==string2)
 2. In C++ there is no boundry check where as in C# it returns exception
 3. In C++ arrays decays into pointer that's why we need to pass size too whereas this is not a case in C#, the length is carried along.
 
+## Strings
+1. In C++, strings are array of characters and its value can be changes for a given index
+2. But in C# the strings are immutable i.e the values cannnot be changed, it can only be accessed
+
+### Creation
+1. Generally they are initialized using **new** keyword.
+2. Althoug we can do it without new keyword too.
+
+With **new** keyword
+```
+int[] numbers;
+numbers = new int[] { 1, 2, 3, 4, 5 };
+```
+
+without **new** keyword
+```
+int[] numbers = { 1, 2, 3, 4, 5 };
+```
+
+
+Default value is **null** so we use **new** keyword with [count] to create array
 ### Passing arrays
+
+1. Arrays are passed by reference and **primitives** are passed by value.
+2. The changes happened in function will persist even after it leaves the function
+3. Arrays are not dynamic in nature
+
+
 ```
 // Method declaration
 int[] CreateArray()
@@ -77,6 +104,14 @@ When you call CreateArray() and assign its result to result, result holds a refe
 
 <br>
 
+## Loops
+**For each**
+```
+foreach(var number in array)
+{
+  console.writeline(numer);
+}
+```
 
 # Reference Types and Value Types
 Refrence types are 
@@ -99,7 +134,7 @@ MyDelegate del = MyMethod;
 ```
 5. String Type
 6. Dynamic Type : `dynamic dynObj = GetDynamicObject();`
-7. 
+   
 
 
 
