@@ -26,7 +26,7 @@ bool TryParse(string input, out T result);
 ```
 int.TryParse attempts to parse the string "123" into an integer.
 
-
+Other ways `int.Parse` and `Convert.ToInt32`
 
 
 
