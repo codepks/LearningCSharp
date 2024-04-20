@@ -181,6 +181,42 @@ class Program {
 
 ```
 
+## getter and setter
+```
+private int _legs;
+
+public int Legs
+{
+    get { return _legs; }
+    set { _legs = value; }
+}
+```
+
+## Sample Inheritance
+```
+class Program {
+    static void Main()  {
+        Bird brd = new Bird("chirai");
+        Console.WriteLine(brd.Name);
+    }
+
+    class Animal    {
+        private string _name { get; set; }
+
+        public string Name  {
+            get { return _name; }
+            set { _name = value; }
+        }
+    }
+
+    class Bird : Animal  {
+        public Bird(string name)  {
+            Name = name;
+        }
+    }
+}
+```
+
 ## object keyword
 1. **object** is the ultimate base type for all other types in C#
 2. any value or reference type can be assigned to a variable of type **object**
