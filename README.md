@@ -136,6 +136,50 @@ MyDelegate del = MyMethod;
 6. Dynamic Type : `dynamic dynObj = GetDynamicObject();`
    
 
+# Files and Errors
+## Path using @
+1. `@` when used in front a string it makes it a Verbatim
+2. It cancels out special symbols
+
+## Files
+1. When file is opened for reading and writing, it becomes a stream
+2. A stream is a sequence of bytes passing through communication path
+3. Unmanaged resources are disposed usign filestream.dispose()
+4. 
+
+## Try and Catch
+Like in C++ try and catch are used, but here we have **finally** keyword where things withing its braces the statements are executed anyway.
+   
+
+# Object Oriented Programming
+## Static classes
+```
+using System;
+
+public static class MathHelper {
+    // Static method to add two numbers
+    public static int Add(int a, int b)    {
+        return a + b;
+    }
+
+    // Static method to subtract two numbers
+    public static int Subtract(int a, int b)    {
+        return a - b;
+    }
+}
+
+class Program {
+    static void Main(string[] args)    {
+        // Using static methods of the MathHelper class without creating an instance
+        int sum = MathHelper.Add(5, 3);
+        int difference = MathHelper.Subtract(8, 2);
+
+        Console.WriteLine($"Sum: {sum}");
+        Console.WriteLine($"Difference: {difference}");
+    }
+}
+
+```
 
 
 
