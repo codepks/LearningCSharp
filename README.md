@@ -217,6 +217,13 @@ class Program {
 }
 ```
 
+## Access specifier inheritancec
+In C++ we have 
+```
+class Bird : public Animal {}
+```
+We don't have something like public in C# while doing inheritance.
+
 ## object keyword
 1. **object** is the ultimate base type for all other types in C#
 2. any value or reference type can be assigned to a variable of type **object**
