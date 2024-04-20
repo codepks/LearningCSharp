@@ -176,12 +176,42 @@ class Program {
 
         Console.WriteLine($"Sum: {sum}");
         Console.WriteLine($"Difference: {difference}");
-    }
+    
 }
 
 ```
 
-
+## object keyword
+1. **object** is the ultimate base type for all other types in C#
+2. any value or reference type can be assigned to a variable of type **object**
+3. object is the basis for **boxing and unboxing** in C#
+```
+int i = 123; // Value type
+object obj = i; // Boxing
+int j = (int)obj; // Unboxing
+```
+4. Can be used for **Generics**
+```
+List<object> objects = new List<object>();
+objects.Add("Hello");
+objects.Add(123);
+objects.Add(new MyClass());
+```
+5. Type checking : It can be done using **is** or **as** parameter
+```
+if (obj is string)
+{
+    Console.WriteLine("Object is a string.");
+}
+```
+6. As a method parameter or return type too
+```
+if (obj is string)
+{
+    Console.WriteLine("Object is a string.");
+}
+```
+7. 
 
 
 
