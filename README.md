@@ -256,7 +256,49 @@ if (obj is string)
 ```
 7. 
 
+# Internal Class
 
+Internal keyword allows you to set internal access specifier. <br>
+
+Internal access specifier allows a class to expose its member variables and member functions to other functions and objects in the current assembly. <br>
+
+Any member with internal access specifier can be accessed from any class or method defined within the application in which the member is defined.  <br>
+
+Use case: <br>
+1. Call a class’s private function within the same assembly.
+2. In order to test a private function, you can mark it as internal and exposed the dll to the test DLL via InternalsVisibleTo.
+
+```
+using System;
+
+namespace RectangleApplication {
+   class Rectangle {
+
+      internal double length;
+      internal double width;
+
+      double GetArea() {
+         return length * width;
+      }
+
+      public void Display() {
+         Console.WriteLine("Length: {0}", length);
+         Console.WriteLine("Width: {0}", width);
+         Console.WriteLine("Area: {0}", GetArea());
+      }
+   }
+
+   class Demo {
+      static void Main(string[] args) {
+         Rectangle rc = new Rectangle();
+         rc.length = 10.35;
+         rc.width = 8.3;
+         rc.Display();
+         Console.ReadLine();
+      }
+   }
+}
+```
 
 
 
