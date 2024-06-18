@@ -16,21 +16,21 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 
 # Overview
 .NET has two components:
-	1. CLR : For managing execution of the code
-	2. Libraries : For providing set of in-build functionalities for development
-	3. Managed code enviroment provides assistance like : 
-		a. like garbage collection
-		b. type checking
-		c. exception handling
-		d. bounds checking
-		e. The source code is compiled to Intermediate lang. in form of .exe or ..dll which is taken care later by JIT for running in different platforms(only need to install CLR) where as in unmanaged code it is directly compiled to native code
-	4. Process of compilation:
-		a. Code -> MSIL language(intermediate lang.) -> Creates .exe 
-		b. Launch .exe -> JIT compiles the intermediate lang. to native code for the hardware architecture
-	5. Unmanaged Code : 
-		a. Code which is directly executed by OS like C++ 
-		b. To get the exe for different OS you need to recompile into the architecture e.g. C++ needs to be compiled separately in Windows and Linux and separate executables are made
-		c. Memory managed needs to be done by the developer
+1. CLR : For managing execution of the code
+2. Libraries : For providing set of in-build functionalities for development
+3. Managed code enviroment provides assistance like :
+	- like garbage collection
+ 	- type checking
+ 	- exception handling
+ 	- bounds checking
+ 	- The source code is compiled to Intermediate lang. in form of .exe or ..dll which is taken care later by JIT for running in different platforms(only need to install CLR) where as in unmanaged code it is directly compiled to native code
+4. Process of compilation:
+	- Code -> MSIL language(intermediate lang.) -> Creates .exe
+ 	- Launch .exe -> JIT compiles the intermediate lang. to native code for the hardware architecture
+5. Unmanaged Code :
+	- Code which is directly executed by OS like C++
+ 	- To get the exe for different OS you need to recompile into the architecture e.g. C++ needs to be compiled separately in Windows and Linux and separate executables are made
+  	- Memory managed needs to be done by the developer
 	
 # Logical Flow
 
