@@ -95,7 +95,34 @@ public static void addstr(dynamic s1, dynamic s2)
     } 
 ```
  
+## Binary Literal and Digit separators
+C# 7.0 onwards some changes were made in repesenting the variable literal <br>
+1. Binary literals : used as '0b' to represetn the binary literals. Often used in bit masking
+```
+	// Creating binary literals  
+	// by prefixing with 0b 
+	var num1 = 0b1001; 
+	var num2 = 0b01000011; 
+```
 
+2. Digit Separators : TO simplify the long numerical digits
+```
+	// Without Using digit separators 
+	long x = 100000022200000202; 
+	long z = 10000000020; 
+	
+	Console.WriteLine("X: {0}", x); 
+	Console.WriteLine("Z: {0}", z); 
+	
+	// Using digit separators 
+	long num1 = 1_00_10_00_00_00; 
+	var num2 = 0b_010_000_000_000_000_000_000_000_000; 
+	long num3 = 1_00_00_00_00_00_00; 
+	var num4 = 0b_1_1000_0000_1000_0000_0011_0000_0000_1000_0001; 
+	
+	Console.WriteLine("Num1: {0}", num1); 
+	Console.WriteLine("Num2: {0}", num2); 
+```
 
 # String Operations
 ## Try Parse
