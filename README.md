@@ -149,6 +149,51 @@ Object Obj = num; // Boxing
 Why do we need it: <br>
 For example, the old collection type ArrayList only eats objects. That is, it only stores references to somethings that live somewhere. Without boxing you cannot put an int into such a collection. But with boxing, you can.
 
+## Params
+For multiple arguments just like **variadic templates inc ++** we use params. <br>
+But only one parameter is allowed in this case.
+
+
+```
+namespace Examples { 
+	
+class Geeks { 
+	
+	// function containing params parameters 
+	public static int Add(params int[] ListNumbers) 
+	{ 
+		int total = 0; 
+		
+		// foreach loop 
+		foreach(int i in ListNumbers) 		{ 
+			total += i; 
+		} 
+		return total; 
+	} 
+		
+	// Driver Code	 
+	static void Main(string[] args) 
+	{ 	
+		int y = Add(12,13,10,15,56); 	
+		// Displaying result 
+		Console.WriteLine(y); 
+	} 
+	} 
+} 
+
+```
+
+## Type Casting
+### Downcasting - implicit
+For converting like int to float, the conversions are implicit and no keyword is required. Eg. 
+- int to float
+- float ot double
+
+  ### Upcasting - explcit
+  We need to use keywords to make this lossy conversion possible. E.g.
+  - float to int (ToInt32)
+  - double to float (ToDouble)
+
 
 # String Operations
 ## Try Parse
