@@ -131,7 +131,24 @@ There are 4 access modifiers (public, protected, internal, private)
 
 1. **internal** : We can acess this within current assembly only. It is a **default access modifier**
 2. **protected internal** : Acess is given to the current assembly or namespace and that too in the derived classes only
-3. 
+
+## Boxing Unboxing
+
+### Boxing
+1. Boxing converts a Value Type variable into a Reference Type variable, and Unboxing achieves the vice-versa.
+2. **Value** Type variables are always stored in **Stack memory**, while **Reference** Type variables are stored in **Heap memory**.
+```
+int num = 23; // 23 will assigned to num
+Object Obj = num; // Boxing
+```
+### Unboxing
+1. Create a Value Type integer i to unbox the value from obj.
+2. This is done using the casting method, in which we explicitly specify that obj must be cast as an int value.
+3. Thus, the Reference Type variable residing in the heap memory is copied to stack 
+
+Why do we need it: <br>
+For example, the old collection type ArrayList only eats objects. That is, it only stores references to somethings that live somewhere. Without boxing you cannot put an int into such a collection. But with boxing, you can.
+
 
 # String Operations
 ## Try Parse
