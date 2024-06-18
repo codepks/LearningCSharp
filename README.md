@@ -35,8 +35,8 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 2. The **fall through** is not automatic thus break is optional
 
 # Fundamentals
-	1. Variables are known as identifiers
-	2. Data types and alias - value type
+1. Variables are known as identifiers
+2. Data types and alias - value type
 		a. sbyte	System.Sbyte	
 		b. short	System.Int16	
 		c. Int	System.Int32
@@ -45,12 +45,12 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 		f. ushort	System.UInt16	
 		g. uint	System.UInt32	
 		h. ulong	System.UInt64
-	3. Reference Type
+3. Reference Type
 		a. String
 		b. Object : It is base class for all reference type(predefined or user defined) or value types
 			i. Value type -> Object type (Boxing)
 			ii. Object type -> Value type (Unboxing)
-	4. Unsafe Pointers:
+4. Unsafe Pointers:
 		a. We need to enable unsafe option to run this:
 		unsafe
 ```		
