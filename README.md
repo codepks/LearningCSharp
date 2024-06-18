@@ -72,7 +72,30 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 **var** : <br> It is designed to handle some special-case situations like LINQ(Language-Integrated Query). <br>
 
 **dynamic** : <br>
-You can get the actual type of the dynamic variable at runtime by using GetType() method. The dynamic type changes its type at the run time based on the value present on the right-hand side.
+	- You can get the actual type of the dynamic variable at runtime by using GetType() method
+ 	- The dynamic type changes its type at the run time based on the value present on the right-hand side.
+  	- It can also be used to pass the dynamic parameters
+
+```
+public static void addstr(dynamic s1, dynamic s2) 
+    { 
+        Console.WriteLine(s1 + s2); 
+    } 
+  
+    // Main method 
+    static public void Main() 
+    { 
+  
+        // Calling addstr method 
+        addstr("G", "G"); 
+        addstr("Geeks", "forGeeks"); 
+        addstr("Cat", "Dog"); 
+        addstr("Hello", 1232); 
+        addstr(12, 30); 
+    } 
+```
+ 
+
 
 # String Operations
 ## Try Parse
