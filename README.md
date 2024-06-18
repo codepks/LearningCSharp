@@ -67,7 +67,12 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 		} 
 ```		
 	
+## Implicit and Dynamic variables
 
+**var** : <br> It is designed to handle some special-case situations like LINQ(Language-Integrated Query). <br>
+
+**dynamic** : <br>
+You can get the actual type of the dynamic variable at runtime by using GetType() method. The dynamic type changes its type at the run time based on the value present on the right-hand side.
 
 # String Operations
 ## Try Parse
