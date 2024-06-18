@@ -37,19 +37,19 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 # Fundamentals
 1. Variables are known as identifiers
 2. Data types and alias - value type
-		a. sbyte	System.Sbyte	
-		b. short	System.Int16	
-		c. Int	System.Int32
-		d. long	System.Int64	
-		e. byte	System.byte	
-		f. ushort	System.UInt16	
-		g. uint	System.UInt32	
-		h. ulong	System.UInt64
+	- sbyte	System.Sbyte
+	- short	System.Int16
+	- Int	System.Int32
+	- long	System.Int64
+	- byte	System.byte
+	- ushort System.UInt16
+	- uint	System.UInt32
+	- ulong	System.UInt64
 3. Reference Type
-		a. String
-		b. Object : It is base class for all reference type(predefined or user defined) or value types
-			i. Value type -> Object type (Boxing)
-			ii. Object type -> Value type (Unboxing)
+	- String
+ 	- Object : It is base class for all reference type(predefined or user defined) or value types
+		- Value type -> Object type (Boxing)
+  		- Object type -> Value type (Unboxing)
 4. Unsafe Pointers:
 		a. We need to enable unsafe option to run this:
 		unsafe
