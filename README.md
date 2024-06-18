@@ -123,6 +123,15 @@ C# 7.0 onwards some changes were made in repesenting the variable literal <br>
 	Console.WriteLine("Num1: {0}", num1); 
 	Console.WriteLine("Num2: {0}", num2); 
 ```
+ura
+# Acess Modifiers
+There are 4 access modifiers (public, protected, internal, private)
+<br>
+**Assembly** Means namespace. <br>
+
+1. **internal** : We can acess this within current assembly only. It is a **default access modifier**
+2. **protected internal** : Acess is given to the current assembly or namespace and that too in the derived classes only
+3. 
 
 # String Operations
 ## Try Parse
