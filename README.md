@@ -195,6 +195,50 @@ For converting like int to float, the conversions are implicit and no keyword is
   - double to float (ToDouble)
 
 
+## Properties
+Properties can be used as if they are public data members, but they are actually special methods called accessors<br>
+```
+class Geeks {
+
+// Declare roll_no field
+private int roll_no;
+
+// Declare roll_no property
+public int Roll_no
+ { 
+
+   get 
+     {
+         return roll_no;
+      }
+
+   set 
+     {
+         roll_no = value;
+      }
+}
+}
+```
+
+Note: 
+1. we can’t use accessor modifiers on an interface
+
+## Nullable types
+1. From c# 2.0 we can provide null values to only **Value type** and not Reference type
+2. from c# 8.0 onwards we can explicitly define if a **Feference type** can or cannot hold a value
+
+```
+int? j = null;
+Nullable<int> j = null;
+
+```
+
+Usage:
+The main use of nullable type is in database applications. Suppose, in a table a column required null values, then you can use nullable type to enter null values.
+
+## Structures
+
+
 # String Operations
 ## Try Parse
 ```
