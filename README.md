@@ -295,6 +295,116 @@ object[] obj = new object[5];
         }
 ```
 
+**is** operator returns boolean whereas **as** operator returns type itself
+
+## Static keyword
+
+### static classes
+static classes 
+1. can only contain static members
+2. static constructor
+3. not allowed to create objects
+4. they are **sealed**, hence cannot be inherited
+
+```
+static class Tutorial {
+ 
+    // Static data members of Tutorial
+    public static string Topic = "Static class";
+}
+ 
+// Driver Class
+public class GFG {
+ 
+    // Main Method
+    static public void Main()
+    {
+ 
+        // Accessing the static data members of Tutorial
+        Console.WriteLine("Topic name is : {0} ", Tutorial.Topic);
+    }
+```
+
+### static variable
+When a static member variable is created then same copy of the member variable is updated across all the objects.
+
+### static members
+1. Called without creatiing any objects
+2. It can access all the static and non-static members of the class
+
+### static constructor
+It is invoked **only once** that too before the instance contructor.
+
+```
+class G1 {
+ 
+    // It is invoked before the first
+    // instance constructor is run.
+    static G1()    {
+        Console.WriteLine("Example of Static Constructor");
+    }
+ 
+    public G1(int j)    {
+        Console.WriteLine("Instance Constructor " + j);
+    }
+ 
+    public string g1_detail(string name, string branch)    {
+        return "Name: " + name + " Branch: " + branch;
+    }
+ 
+    public static void Main()    {
+ 
+        G1 obj = new G1(1); //static constructor is called here only as it runs once for the first instance
+        Console.WriteLine(obj.g1_detail("Sunil", "CSE"));
+        G1 ob = new G1(2);
+        Console.WriteLine(ob.g1_detail("Sweta", "ECE"));
+    }
+```
+
+Note : In C#, if static keyword is used with the class, then the static class always contain static members.
+
+## typeof keyword
+It is used to get the type of the object
+
+## readonly and const keyword
+1. const keyword value is same throughout
+2. readonly variable is assigned only when declaring or in the constructor of the same class
+
+```
+class GFG {
+ 
+    // readonly variables
+    public readonly int myvar1;
+    public readonly int myvar2;
+ 
+    // Values of the readonly 
+    // variables are assigned
+    // Using constructor
+    public GFG(int b, int c)
+    {
+ 
+        myvar1 = b;
+        myvar2 = c;
+        Console.WriteLine("Display value of myvar1 {0}, "+
+                        "and myvar2 {1}", myvar1, myvar2);
+    }
+}
+```
+
+## ref keyword
+
+1. For value type, we can use ref to pass the value type as a reference
+```
+subtractValue(ref b);
+public static void subtractValue(ref int b)
+{
+	b -= 5;
+}
+```
+
+2. For reference type
+not required generally
+
 # String Operations
 ## Try Parse
 ```
