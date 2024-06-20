@@ -237,7 +237,63 @@ Usage:
 The main use of nullable type is in database applications. Suppose, in a table a column required null values, then you can use nullable type to enter null values.
 
 ## Structures
+It comes under value type.
 
+# Keywords
+## is keyword
+It checks if the object is of the same type as the type it is checked against.
+
+```
+public class G1 { }
+ 
+public class G2 : G1 { }
+ 
+public class G3 { }
+
+G1 obj1 = new G1(); 
+         
+G2 obj2 = new G2(); 
+ 
+Console.WriteLine(obj1 is G1); //shows as true
+ 
+Console.WriteLine(obj1 is Object); //shows as true
+
+Console.WriteLine(obj2 is G1); //shows as true
+
+Console.WriteLine(obj1 is G3); //shows as false
+```
+
+## as operator
+**as** operator returns object when type and operator are compatible else it returns null.
+```
+expression is type ? (type)expression : (type)null
+```
+
+In the example below **as** sometimes comes as null and sometime not based on compatibility
+```
+object[] obj = new object[5];
+        obj[0] = new Geeks1();
+        obj[1] = new Geeks2();
+        obj[2] = "C#";
+        obj[3] = 334.5;
+        obj[4] = null;
+ 
+        for (int j = 0; j < obj.Length; ++j) {
+ 
+            // using as operator
+            string str = obj[j] as string;
+ 
+            Console.Write("{0}:", j);
+ 
+            // checking for the result
+            if (str != null) {
+                Console.WriteLine("'" + str + "'");
+            }
+            else {
+                Console.WriteLine("Is is not a string");
+            }
+        }
+```
 
 # String Operations
 ## Try Parse
