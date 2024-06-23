@@ -705,3 +705,49 @@ IEnumerable<int> ProduceEvenNumbers(int upto)
 }
 // Output: 0 2 4 6 8
 ```
+
+# ObservableCollections <T>
+It is collection dynamic data which provides notification when items get added/removed/refreshed.
+
+[source](https://www.youtube.com/watch?v=ISwIiOmgMCc&ab_channel=SubhamoyBurman)
+
+```
+using System;
+using System.Collections.ObjectModel;
+
+namespace HarryPotterBooks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Define the Harry Potter book names
+            ObservableCollection<string> harryPotterBooks = new ObservableCollection<string>
+            {
+                "Harry Potter and the Philosopher's Stone",
+                "Harry Potter and the Chamber of Secrets",
+            };
+
+            // Subscribe to CollectionChanged event
+            harryPotterBooks.CollectionChanged += (sender, e) =>
+            {
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                {
+                    Console.WriteLine("The collection changed (book added).");
+                }
+                else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                {
+                    Console.WriteLine("The collection changed (book removed).");
+                }
+            };
+
+            // Add a book
+            harryPotterBooks.Add("New Book");
+
+            // Remove a book
+            harryPotterBooks.Remove("Harry Potter and the Philosopher's Stone");
+        }
+    }
+}
+
+```
