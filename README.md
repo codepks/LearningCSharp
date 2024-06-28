@@ -412,11 +412,133 @@ Same as C++
 Except for the not allowing fallthrough for empty case body
 
 ## Loops
+foreach is something different
+```
+  foreach (int num in numbers)  
+        {  
+            if (num > maxSoFar)  
+            {  
+                maxSoFar = num;  
+            }  
+        }
+```
+
+## Throw
+```
+  static void displaysubject(string sub1)
+    {
+        if (sub1  == null)
+            throw new NullReferenceException("Exception Message");
+             
+    }
+```
+
+In order to throw invalid object, make a class and derive it from Exception class..
+
+# Class
+1. A class can inherit from multiple interfaces
+
+## Nested Class
+1. It can access the public, static and private members of the outer class
+```
+namespace NestedClass
+{
+    public class Person
+    {
+        public string name = string.Empty;     
+        private int rollNo;
+        protected string className = string.Empty;
+
+        public Person(string name, int rollno, string classname) { 
+            this.name = name;
+            this.rollNo = rollno;
+            this.className = classname;
+        }
+
+        public class Student
+        {
+            public string name = string.Empty;
+            public int rollNo = 0;          
+
+            public Student() { }
+
+            public int getPersonRoll( Person person)            {
+                return person.rollNo;
+            }
+        }
+    }
 
 
+    public class MainClass
+    {
+        static void Main(string[] args)
+        {
+            Person personObj = new Person("prashant", 2, "Xa");
+            Person.Student studentObj = new Person.Student();
+            Console.WriteLine(studentObj.getPersonRoll(personObj));
+        }
+    }
+}
+````
+In the example above the child class is able to access the private members of the parent class
+
+## Cracking Sealed class with Friend Function
+```
+using System;
+
+namespace NestedClass
+{
+    public sealed class Singleton
+    {
+        private static Singleton? instance; // The single instance
+
+        private Singleton() // Private constructor
+        {
+            // Initialization logic (if needed)
+            counter++;
+        }
+
+        public static Singleton GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Singleton(); // Lazy initialization
+            }
+            return instance;
+        }
+
+        public static int counter = 0;
+
+        public class ChildSingleton
+        {
+            public Singleton? getSingletonObject(Singleton singleton)
+            {
+                Singleton.instance = new Singleton();
+                return instance;
+            }
+
+        }
+    }
 
 
+    public class MainClass
+    {
+        static void Main(string[] args)
+        {
+            Singleton singleton = Singleton.GetInstance();
+            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 1 
 
+            Singleton singleton2 = Singleton.GetInstance();
+            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 1 
+
+            Singleton.ChildSingleton childSingleton = new Singleton.ChildSingleton();   
+
+            childSingleton.getSingletonObject( singleton2);
+            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 2
+        }
+    }
+}
+```
 
 
 # String Operations
