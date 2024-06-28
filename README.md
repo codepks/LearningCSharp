@@ -405,6 +405,20 @@ public static void subtractValue(ref int b)
 2. For reference type
 not required generally
 
+## if else
+Same as C++
+
+## Switch Statement
+Except for the not allowing fallthrough for empty case body
+
+## Loops
+
+
+
+
+
+
+
 # String Operations
 ## Try Parse
 ```
