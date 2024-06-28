@@ -482,7 +482,7 @@ namespace NestedClass
 ````
 In the example above the child class is able to access the private members of the parent class
 
-## Cracking Sealed class with Friend Function
+## Cracking Sealed Singleton class with Friend Function
 ```
 using System;
 
@@ -511,32 +511,154 @@ namespace NestedClass
 
         public class ChildSingleton
         {
-            public Singleton? getSingletonObject(Singleton singleton)
+            public Singleton? getSingletonObject()
             {
                 Singleton.instance = new Singleton();
                 return instance;
             }
-
         }
     }
 
+    class InheritChild : Singleton.ChildSingleton
+    {
+        public void MakemulutipleInstance()
+        {
+            getSingletonObject();
+        }
+    }
 
     public class MainClass
     {
         static void Main(string[] args)
         {
             Singleton singleton = Singleton.GetInstance();
-            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 1 
+            Console.WriteLine($"counter is : {Singleton.counter}");
 
             Singleton singleton2 = Singleton.GetInstance();
-            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 1 
+            Console.WriteLine($"counter is : {Singleton.counter}");
 
             Singleton.ChildSingleton childSingleton = new Singleton.ChildSingleton();   
 
-            childSingleton.getSingletonObject( singleton2);
-            Console.WriteLine($"counter is : {Singleton.counter}"); //counter value 2
+            childSingleton.getSingletonObject();
+            Console.WriteLine($"counter is : {Singleton.counter}");
+
+            InheritChild inheritChild = new InheritChild();
+            inheritChild.getSingletonObject();
+            Console.WriteLine($"counter is : {Singleton.counter}");
+
         }
     }
+}
+```
+
+## Early and Late Binding
+1. Early binding is when you try to call the class method and you know which class the method blongs to
+2. Late binding is when you call the class method which is virtual class and you do not know if that would be called or not
+
+```
+public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("The animal makes a sound");
+    }
+}
+
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("The cat meows");
+    }
+}
+```
+
+## Constructor Overloading
+Parametric Constructor having different types and number
+
+## Inheritance
+Multiple inheritance is not allowed in C#, only mulitple interface inheritance is allowed.
+
+## Abstract Classes
+1. Abstract classes may or may not contain function definitions.
+2. The one not containing the function definitions are tagged as `abstract` 
+3. Abstract classes are only meant for inheritance, so you cannot create their objects
+
+```
+abstract class Shape {
+ 
+    // abstract method
+    public abstract int area();
+}
+```
+
+## Static Class
+In Static classes :
+1. It contains only Static members
+2. It contains only Static methods
+3. You cannot make objects of it
+
+```
+static class Author {
+ 
+    // Static data members of Author
+    public static string A_name = "Ankita";
+    public static string L_name = "CSharp";
+    public static int T_no = 84;
+ 
+    // Static method of Author
+    public static void details()
+    {
+        Console.WriteLine("The details of Author is:");
+    }
+}
+ 
+// Driver Class
+public class GFG {
+ 
+    // Main Method
+    static public void Main()
+    {
+ 
+        // Calling static method of Author
+        Author.details();
+ 
+        // Accessing the static data members of Author
+        Console.WriteLine("Author name : {0} ", Author.A_name);
+        Console.WriteLine("Language : {0} ", Author.L_name);        
+    }
+}
+```
+
+## Partial Classes
+1. It is used when you want to chop the functionalities of the class into multiple files
+2. It needs to be under same namespace
+3. It should have the same accessibility as public, private or protected
+4. If any part is declared as sealed or abstract then it means for the class overall
+
+Geeks1.cs
+```
+public partial class Geeks {
+	private string Author_name;
+	private int Total_articles;
+
+	public Geeks(string a, int t)
+	{
+		this.Authour_name = a;
+		this.Total_articles = t;
+	}
+}
+```
+
+Another partial class having just one method in it
+Geek2.cs 
+```
+public partial class Geeks {
+	public void Display() 
+	{
+		Console.WriteLine("Author's name is : " + Author_name);
+		Console.WriteLine("Total number articles is : " + Total_articles);
+	}
 }
 ```
 
