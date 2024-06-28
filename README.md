@@ -763,6 +763,252 @@ class GFG
 }
 ```
 
+## Object list creation
+```
+var author1 = new Geeks() { author_name = "Soniya", author_id = 103, total_article = 120 };
+var author2 = new Geeks() { author_name = "Siya", author_id = 106, total_article = 90 };
+var author3 = new Geeks() { author_name = "Arpita", author_id = 111, total_article = 130 };
+
+List<Geeks> author = new List<Geeks>() { author1, author2, author3 };
+```
+
+# Methods
+## Method Parameters
+### Named Parameters
+Names can be used againts the arguments and arguments can be in any order
+```
+public class GFG { 
+  
+    // addstr contain three parameters 
+    public static void addstr(string s1, string s2, string s3) 
+    { 
+        string result = s1 + s2 + s3; 
+        Console.WriteLine("Final string is: " + result); 
+    } 
+  
+    // Main Method 
+    static public void Main() 
+    { 
+        // calling the static method with named  
+        // parameters without any order 
+        addstr(s1: "Geeks", s2: "for", s3: "Geeks"); 
+                     
+    } 
+} 
+```
+
+### Ref Parameters
+It is for passing the value type variables by reference
+```
+// C# program to illustrate the 
+// concept of ref parameter 
+using System; 
+
+class GFG { 
+
+	public static void Main() { 
+		string val = "Dog"; 
+		CompareValue(ref val); 
+		Console.WriteLine(val); 
+	} 
+
+	static void CompareValue(ref string val1) { 
+		if (val1 == "Dog") { 
+			Console.WriteLine("Matched!"); 
+		} 
+		val1 = "Cat"; 
+	} 
+} 
+
+```
+
+### Out Parameter
+```
+class GFG { 
+	static public void Main() { 
+		int num; 
+		AddNum(out num); 
+		Console.WriteLine("The sum of"	+ " the value is: {0}",num); 					
+	} 
+
+	public static void AddNum(out int num) 	{ 
+		num = 40; 
+		num += num; 
+	} 
+} 
+
+```
+It is just like `ref` parameter but ref parameter needs to be initialized before being passed as an argument
+
+
+### Dynamic Parameters
+1. `var` variables are deduced at the compile time whereas `dynamic` variables are deduced at run time.
+2. `var` type needs to be initialized at the time of declaration whereas it is not true for `dynamic` type
+3. For `var` variable, once type one deduced it cannot be reassigned to different type whereas dynamic type it can be reassigned to different type
+
+Here the compiler will throw an error because the compiler has already decided the type of the myvalue variable using statement 1 that is an integer type
+```
+var myvalue = 10; // statement 1
+myvalue = “GeeksforGeeks”; // statement 2
+```
+
+Here, the compiler will not throw an error though the type of the myvalue is an integer
+```
+dynamic myvalue = 10; // statement 1
+myvalue = “GeeksforGeeks”; // statement 2
+```
+
+Note : **We can also use it as function parameters**
+<br> C# 7  onwards one can use var parameters too in function parameters
+
+### Params Keyword
+In order to pass multiple variables of the **same type** one can use `params` keyword
+```
+// C# program to illustrate params 
+using System; 
+namespace Examples { 
+
+class Geeks { 
+	public static int mulval(params int[] num) 	{ 
+		int res = 1; 
+		foreach(int j in num) 		{ 
+			res *= j; 
+		} 
+		return res; 
+	} 
+
+	static void Main(string[] args) 	{ 
+		int x = mulval(20, 49, 56, 69, 78); 
+		Console.WriteLine(x); 
+	} 
+   } 
+} 
+```
+
+Sending optional/default parameters using params keyword
+```
+ static public void my_mul(int a, params int[] a1)     { 
+        int mul = 1; 
+        foreach(int num in a1)         { 
+            mul *= num; 
+        } 
+        Console.WriteLine(mul * a); 
+    } 
+  
+    // Main method 
+    static public void Main()     { 
+        my_mul(1); 
+        my_mul(2, 4); 
+        my_mul(3, 3, 100); 
+    }
+
+ static public void my_mul(int a, params int[] a1)     { 
+        int mul = 1; 
+        foreach(int num in a1)         { 
+            mul *= num; 
+        } 
+        Console.WriteLine(mul * a); 
+    } 
+  
+    // Main method 
+    static public void Main()     { 
+        my_mul(1); 
+        my_mul(2, 4); 
+        my_mul(3, 3, 100); 
+    }
+```
+
+## in paramets
+1. It does not allow changing of the input value but ref allow
+2. It is like `const& int varName`
+
+
+## Method Overriding
+### Virtual function overriding
+Same as C++
+
+### Base keyword
+We can call the parent class function in the derived class function using `base` keyword
+```
+public class web {
+    string name = "GeeksForGeeks";
+    public virtual void showdata()    {
+        Console.WriteLine("Website Name: " + name);
+    }
+}
+
+class stream : web {
+    string s = "Computer Science";
+    public override void showdata()    {
+        base.showdata();
+	Console.WriteLine("About: " + s);
+    }
+}
+```
+
+### Instantiating Base class constructor in derived class
+public class DerivedClass : clssA
+{
+    public DerivedClass() : base() { }
+    public DerivedClass(int i, int j) : base(i, j) { }
+}
+
+
+
+## Hidden Methods
+1. If the parent class and the base class have the same name functions then the derived class function might shadow the base class function and warning would be generated
+2. To avoid the warning we use `new` keyword in the derived class function name
+```
+public class My_Family { 
+  
+    public void member() 
+    { 
+        Console.WriteLine("Total number of family members: 3"); 
+    } 
+} 
+  
+// Derived Class 
+public class My_Member : My_Family { 
+  
+    // Reimplement the method of the base class 
+    // Using new keyword 
+    // It hides the method of the base class 
+    public new void member()  
+    { 
+        Console.WriteLine("Name: Rakesh, Age: 40 \nName: Somya, "+ 
+                               "Age: 39 \nName: Rohan, Age: 20 "); 
+    } 
+}
+```
+Now the base class function is hidden from the derived class without any warning.
+
+### calling base class function casting way
+```
+public class My_Family { 
+	public void member() 	{ 
+		Console.WriteLine("Total number of family members: 2"); 
+	} 
+} 
+
+// Derived Class 
+public class My_Member : My_Family { 
+	
+	public new void member() { 
+
+		Console.WriteLine("Name: Rakesh, Age: 40 "+ "\nName: Somya, Age: 39"); 
+	} 
+} 
+
+class GFG { 
+	static public void Main() { 
+
+		My_Member obj = new My_Member(); 
+		((My_Family)obj).member(); 
+	} 
+} 
+```
+
+
 # String Operations
 ## Try Parse
 ```
