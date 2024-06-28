@@ -662,6 +662,68 @@ public partial class Geeks {
 }
 ```
 
+## Shallow and Deep Copy - Different from C++
+If we code like this, then both object1 and object2 will point to the same address:
+```
+ Company c1 = new Company(548, "GeeksforGeeks",
+                             "Sandeep Jain");
+ // Performing Deep copy							 
+ Company c2 = c1;
+```
+
+In the above case, in both the objects C1 and C2 you will have value type and reference referencing same address
+
+### Avoiding Value type copy
+Shallow Copy
+```
+ class Company
+ {
+     public int GBRank;
+     public CompanyDescription desc;
+
+     public Company(int gbRank, string c, string o)
+     {
+         this.GBRank = gbRank;
+         desc = new CompanyDescription(c, o);
+     }
+
+     // method for cloning object 
+     public object Shallowcopy()  {
+         return this.MemberwiseClone();
+     }
+}
+
+Main()
+{
+	 Company c2 = (Company)c1.Shallowcopy();  
+}
+```
+Here, it is called shallow copy because value type can be unaffected but reference type is still unaffected
+
+### Deep Copy
+1. For making reference type too as unaffected we need to perform deep copy
+2. Here you create can call the method to create a different object itself
+```
+class Company { 
+      
+    public int GBRank; 
+    public CompanyDescription desc; 
+  
+    public Company(int gbRank, string c,  string o)  { 
+        this.GBRank = gbRank; 
+        desc = new CompanyDescription(c, o); 
+    } 
+      
+    // returning a different object itself
+    public Company DeepCopy()  { 
+        Company deepcopyCompany = new Company(this.GBRank, desc.CompanyName, desc.Owner);                              
+        return deepcopyCompany; 
+    } 
+}
+```
+
+
+
 
 # String Operations
 ## Try Parse
