@@ -722,8 +722,46 @@ class Company {
 }
 ```
 
+## Creating array of objects
+```
+Circle[] circleArray = new Circle[2];
+ 
+// Initialize the objects
+circleArray[0] = new Circle();
+circleArray[1] = new Circle();
+```
 
+## Initialization of Objects
+List initialization
+```
+class Geeks
+{
+    public int val;
+    public string author_name { get; set; }
+    public int author_id { get; set; }
+    public int total_article { get; set; }
+}
 
+class GFG
+{
+
+    // Main method
+    static public void Main()
+    {
+
+        // Initialize fields using 
+        // an object initializer
+        Geeks obj = new Geeks()
+        {
+            val = 1,
+            author_name = "Ankita Saini",
+            author_id = 102,
+            total_article = 178
+        };
+       
+    }
+}
+```
 
 # String Operations
 ## Try Parse
