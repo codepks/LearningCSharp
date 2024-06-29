@@ -1008,6 +1008,152 @@ class GFG {
 } 
 ```
 
+## Anonymous Methods
+1. C# has related anonymous methods(lambdas) and delegates
+2. Just like you associate a function with a delegate and later call the delegate with the parameters to invoke the function
+3. ...In a similar way you can create a **disposeable** function using using keyword `delegate` and associate that disposable function to your delegate of the same signature
+
+```
+// C# program to illustrate how to 
+// create an anonymous function 
+using System; 
+
+class GFG { 
+public delegate void petanim(string pet); 
+static public void Main() 
+{ 
+
+	// An anonymous method with one parameter 
+	petanim p = delegate(string mypet) 
+	{ 
+		Console.WriteLine("My favorite pet is: {0}", mypet); 
+	}; 
+	p("Dog"); 
+} 
+} 
+```
+In the code above we created a delegate `petanim` and later associated it with a disposable function `delegate(string mypet)` and later triggered that delegate. <br>
+
+They can also access the outer variables without any issue. <br>
+
+You can even pass this anonymous function to a function with a delegate parameter which can be invoked later.
+
+```
+namespace AnonmymousDelegate
+{
+    public delegate void printName(string name);
+    class Anonymous
+    {
+        public static void PrintNameFunction(printName pt)  {
+            pt("Something");
+        }
+
+        static void Main()
+        {
+            printName p = delegate (string name)  {
+                Console.WriteLine(name);
+            };
+	    //Invoking the function via delegate object
+            p("Hello World");
+
+	    //Passing the lambda function to the function to be lated invoked by delegate
+            PrintNameFunction(delegate (string name)
+            {
+                Console.WriteLine(name);
+            });
+
+        }
+    }
+}
+```
+Note:
+1. An anonymous method does not access in, ref, and out parameter of the outer scope.
+2. Just like you can subscrbe a normal function to an event, similar can be done in case of anonymous function
+```
+MyButton.Click += delegate(Object obj, EventArgs ev) 
+{ 
+    System.Windows.Forms.MessageBox.Show("Complete without error...!!"); 
+} 
+```
+ 
+## Partial Methods
+1. Declaration and defition can be in separate classes too due to partial classes
+2. We use `partial` keyword at one place and do declaration and another `partial` to do te defintion
+Class11.cs
+```
+public partial class Circle { 
+   partial void area(int p);
+```
+Class12.cs
+```
+public partial class Circle { 
+	partial void area(int r) { 
+		Console.WriteLine("Area is : {0}", A); 
+	} 
+} 
+```
+
+## Extension Methods
+We can extend functionality of a class by making a `static` class and mentioning `this <className> <param name>` in the paremter list at first position <br>
+This works even for `sealed` classes
+```
+
+namespace ExtensionMethods
+{
+    public class Geeeks
+    {
+        public void someFunction1() {
+            Console.WriteLine("Hello 1");
+        }
+
+        public void someFunction2() {
+            Console.WriteLine("Hello 2");
+        }
+    }
+
+    public static class ExtendedGeeks {
+        public static void someFunction3(this Geeeks geeeks) {
+            Console.WriteLine("Hello 3");
+        }
+    }
+
+
+    class ExtendedGeeksTest {
+        static void Main(string[] args) {
+            Geeeks g = new Geeeks();
+            g.someFunction1();
+            g.someFunction2();
+            g.someFunction3();
+        }
+    }
+}
+```
+
+## Local Function
+1. It is like a normal function within a function but does not have a access modifier
+2. It is like a proper lambda function with all the function bodies and parameters
+3. It can use `generics`
+4. It can use `ref/out` parameters
+5. It can use `params` too
+
+```
+public class Program {
+	public static void Main()
+	{
+		int x = 40;
+		int y = 60;
+
+		// Local Function
+		void AddValue(int a, int b) {
+			Console.WriteLine("Value of a is: " + a);
+		}
+		AddValue(79, 70);
+	}
+}
+```
+
+#Delegates
+
 
 # String Operations
 ## Try Parse
