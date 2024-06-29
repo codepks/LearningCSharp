@@ -1230,7 +1230,7 @@ namespace ExtensionMethods
 
 1. Predicate delega works for `boolean` return kind of function which has only **one input parameter**
 
-'''
+```
  public class Geeks
  {
      public bool someFunction3(string someStr) {
