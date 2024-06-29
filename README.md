@@ -1,3 +1,4 @@
+
  Starting (entry) point of a console application is Main
  
  float weight = 80.5f;
