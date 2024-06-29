@@ -1293,6 +1293,381 @@ class GeeksTest {
 }
 ```
 
+# Constructors
+## Static Constructors
+1. These contructors are invoked only once during the creation of first instance and in the further instance creation others are invoked
+2. They do not have any parameters
+3. It doesn't have any access modifiers
+4. It can iniatialize only static fields
+
+```
+class geeks {
+ 
+    // It is invoked before the first
+    // instance constructor is run.
+    static geeks()
+    {
+ 
+        // The following statement produces
+        // the first line of output,
+        // and the line occurs only once.
+        Console.WriteLine("Static Constructor");
+    }
+ 
+    // Instance constructor.
+    public geeks(int i)
+    {
+        Console.WriteLine("Instance Constructor " + i);
+    }
+}
+```
+
+## Copy Constructor
+```
+class technicalscripter {
+    // variables
+    private string topic_name;
+    private int article_no;
+ 
+    // copy constructor
+    public technicalscripter(technicalscripter tech)
+    {
+        topic_name = tech.topic_name;
+        article_no = tech.article_no;
+    }
+}
+```
+
+## Constructor Overloading
+We can call the overloaded constructor using `this` keyword
+```
+public GFG(int l, double w) 
+{
+	Console.WriteLine("Parameterized Constructor in 2nd Constructor");
+	Length = l;
+	Width = w;         
+}
+
+public GFG(int l, double w, int h) : this(l, w)
+{
+	Console.WriteLine("Parameterized Constructor in 3rd Constructor");
+	Height = h;
+}
+```
+
+## Desctructor
+1. Destructor of class is invoked by Garbage collector in C#.
+
+Synta : Same as C++
+
+# Arrays
+1. Arrays in C# are **dynamically** allocated
+2. We find their size using their member `length`
+3. A jagged array elements are reference types and are initialized to null.
+4. Array types are reference types and these hese types implement `IEnumerable`
+5. When array stores **primite** data types then it is stored in contiguous memory
+6. Whereas in case of **reference** types it is stored in **heap** memory
+7. Only Declaration of an array doesn’t allocate memory to the array. For that array must be initialized.
+8. The size of arrays can be resized using **resize** keyword
+
+Note : Arrays are of reference type that's why we need to use **new** keyword to initialize them.
+```
+public class Geeks
+{
+    public static int[] intArray1 = new int[5];
+    public static int[] intArray2 = new int[5] {1,2,3,4,5 };
+    public static int[] intArray3 = {1,2,3,4,5};
+
+    //mutlit-dimensional array
+    public static int[,] intArray4 = {  { 1, 2 }, 
+                                        { 2, 3 },
+                                        { 4, 5 } };
+
+    // jagged array of 5 rows
+    public static int[][] intArray5 = new int[5][]; 
+}
+
+
+
+class GeeksTest {
+    static void Main(string[] args)     {
+
+        foreach (var item in Geeks.intArray1) {
+            Console.WriteLine(item);
+        }
+
+        foreach (var item in Geeks.intArray2) {
+            Console.WriteLine(item);
+        }
+    }
+}
+```
+
+## Jagged Arrays
+1. It is array of arrays
+2. The array size withing array can vary, that's why jagged arrays
+3. No. of **rows will be fixed at declaration** time, but **columns can vary**
+
+
+Ways to initiallize: <br>
+Method 1
+```
+int[][] jagged_arr = new int[][] 
+{
+    new int[] {1, 2, 3, 4},
+    new int[] {11, 34, 67},
+    new int[] {89, 23},
+    new int[] {0, 45, 78, 53, 99}
+};
+```
+
+Method 2
+```
+int[][] jagged_arr = 
+{
+    new int[] {1, 2, 3, 4},
+    new int[] {11, 34, 67},
+    new int[] {89, 23},
+    new int[] {0, 45, 78, 53, 99}
+};
+```
+
+## Array of strings
+```
+String[] stringarr = new String[] {"Geeks", "GFG", "Noida"};  
+```
+
+## Foreach loop in arrays
+```
+int[] arr = {1, 3, 7, 5, 8, 6, 4, 2, 12}; 
+foreach(int i in arr) { 
+    if (i == 7) 
+    	Console.Write(i + " "); 
+} 
+```
+
+## Array Class
+It is based on **IList** is that's why it is still considered as collection
+<br>
+Properties
+1. Length
+2. BinarySearch() : Searches a one-dimensional sorted Array for a value, using a binary search algorithm
+3. Clear() : Sets a range of elements in an array to the default value of each element type.
+
+## Sorting
+Need to relook
+
+## Length
+`arraname.Length`
+
+## Bianary Search
+1. To do the binary search in an array, it must be sorted first
+```
+Array.Sort(arr);
+Array.BinarySearch(arr, 9));
+```
+Searching usng string comparer\
+```
+int index = Array.BinarySearch(Arr, 1, 4, Obj, StringComparer.CurrentCulture);
+```
+
+ ## Comparing Arrays
+`Equals(Object)` method which is inherited by Array class from object class is used to check whether an array is equal to another array or not. <br>
+
+```
+String[] arr1 = new String[4] { "Sun", "Mon", "Tue", "Thu" };
+String[] arr2 = new String[4] { "Sun", "Mon", "Tue", "Thu" };
+ 
+Console.WriteLine(arr1.Equals(arr2));
+```
+
+## Length in mutlidimensional array
+It gives number of elements in a specified dimension of an Array
+```
+Console.Write("Total Number of Elements in" + " first dimension of arr: "); 
+// using GetLongLength Method 
+Console.Write(arr.GetLongLength(0));
+```
+
+## Longlength
+It is used to get total number of elements in a multidimensional array
+
+## Rank 
+To get the dimensionality of an array
+
+## Passing array as arguments
+You can easily pass and print it another function unlike C++
+```
+class GFG {
+    static void Result(int[] arr) {
+        for(int i = 0; i < arr.Length; i++)        {
+            Console.WriteLine("Array Element: "+arr[i]);
+        }
+    } 
+     
+    public static void Main() {
+                 
+        int[] arr = {1, 2, 3, 4, 5};
+        Result(arr);
+    }
+}
+```
+
+## Implicitly type
+```
+var author_names = new[] {"Shilpa", "Soniya", "Shivi", "Ritika"};
+```
+Used for query expressions
+
+## Object array and Dynamica array
+1. USed to store different types of elements
+2. Makes code more complex
+
+```
+object[] arr = new object[6]; 
+
+arr[0] = 3.899; 
+arr[1] = 3; 
+arr[2] = 'g'; 
+arr[3] = "Geeks"; 
+```
+
+### Dynamic Arrays
+1. Previousy discussed arrays were static in nature.
+2. It is overcome by List<T>
+
+```
+List<int> myarray = new List<int>(); 
+        myarray.Add(23); 
+        myarray.Add(1); 
+        myarray.Add(78); 
+        myarray.Add(45);
+```
+
+## Index out of range
+1. If you ask the element out of range, then it throws error
+2. This is unlike C/C++ where no index of the bound check is done. The IndexOutOfRangeException is a Runtime Exception thrown only at runtime.
+
+## Reverse array
+Simple
+```
+Array.Reverse(arr);
+```
+
+Using CompareTo
+```
+Array.Sort<int>(arr, new Comparison<int>(
+                  (i1, i2) => i2.CompareTo(i1)));
+```
+
+Using Delegate
+```
+// Sort the arr from last to first
+        // Normal compare is m-n 
+        Array.Sort<int>(arr, delegate(int m, int n)
+                                { return n - m; });
+```
+Can also be written as
+```
+Array.Sort<int>(arr, (x, y) => { return y - x; }) ;
+```
+
+## Using LINQ
+The LINQ returns IOrderedIEnumerable, which is converted to Array using ToArray() method. 
+```
+arr = arr.OrderByDescending(c => c).ToArray();
+```
+
+# Array List
+1. It is used to create a dynamic array
+2. No need to specify the size of the ArrayList.
+3. ArrayList represents an ordered collection of an object that can be indexed individually
+4. To add elements we use `Add`
+
+Hirerachy: <br>
+IEnumberable Interface --> ICollection Interface --> IList Interface --> ArrayList
+
+```
+ ArrayList My_array = new ArrayList();
+ 
+        My_array.Add(12.56);
+        My_array.Add("GeeksforGeeks");
+        My_array.Add(null);
+        My_array.Add('G');
+        My_array.Add(1234);
+```
+But List<T> is still better than Array List
+
+## Joining array list
+```
+// Here we are using AddRange method 
+// Which adds the elements of myList 
+// Collection in myList again i.e. 
+// we have copied the whole myList in it
+
+myList.AddRange(myList);
+```
+
+## Remove range
+```
+public virtual void RemoveRange (int index, int count);
+//Example
+myList.RemoveRange(2, 2);
+```
+
+## ArrayList to Array
+While ArrayList is a collection of objects, an Array is collected like-typed variables.
+
+```
+ArrayList mylist = new ArrayList(3);
+ 
+mylist.Add("Monday");
+mylist.Add("Tuesday");
+mylist.Add("Wednesday");
+
+// Copy the data of Arraylist into
+// the object Array Using ToArray()
+// method
+object[] obj1 = mylist.ToArray();
+```
+
+Another Method using type casting
+```
+ArrayList mylist = new ArrayList(5);
+ 
+mylist.Add("Ruby");
+mylist.Add("C#");
+
+string[] str = (string[])mylist.ToArray(typeof(string));
+```
+
+## Copying ArrayList to Array
+It gives error in case of size difference
+```
+ArrayList myList = new ArrayList(); 
+myList.Add("A"); 
+myList.Add("B"); 
+
+String[] arr = new String[9]; 
+arr[0] = "C"; 
+arr[1] = "C++"; 
+       
+myList.CopyTo(arr);
+````
+
+Starting at a particular index
+```
+myList.CopyTo(arr, 2);
+```
+## Equality Checker
+```
+arrlist.Equals(arrlist)
+```
+
+## Strings
+
+
+
 # String Operations
 ## Try Parse
 ```
