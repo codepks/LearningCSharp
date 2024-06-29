@@ -1228,32 +1228,70 @@ namespace ExtensionMethods
 
 ## Predicate Delegate
 
-1. Predicate delega works for `boolean` return kind of function which has only **one input parameter**
+Predicate delegate works for `boolean` return kind of function which has only **one input parameter**
 
 ```
- public class Geeks
- {
+ public class Geeks {
      public bool someFunction3(string someStr) {
          Console.WriteLine(someStr);
          return true;
      }
  }
 
-
-
  class GeeksTest {
-     static void Main(string[] args) 
-     {
+     static void Main(string[] args) {
          Geeks geeks = new Geeks();
 
          Predicate<string> predicate = geeks.someFunction3;
-         predicate("Hello");
+         predicate("Hello");		//this invoke returns a bool which can be utilized
 
          Predicate<string>  predicate1 = (x) => { Console.WriteLine(x); return true; };
          predicate1("Hello 2");
      }
  }
  ```
+
+## Action Delegate
+It is delegate that works for `void` functions (no return type)
+```
+ public class Geeks
+ {
+     public static void someFunction4(string someStr)
+     {
+         Console.WriteLine(someStr);
+     }
+ }
+
+class GeeksTest {
+    static void Main(string[] args) 
+    {
+        Geeks geeks = new Geeks();
+	Action<string> action = Geeks.someFunction4; ;
+        action("Hello Action");			//this invoke returns nothing
+    }
+}
+```
+
+## Func Delegate
+It works for the functions with return types only
+```
+public class Geeks
+{
+    public static int someFunction5(string someStr) {
+        Console.WriteLine(someStr);
+        return 0;
+    }
+}
+
+class GeeksTest {
+    static void Main(string[] args) 
+    {
+        Geeks geeks = new Geeks();
+        Func<string, int> func = Geeks.someFunction5; 
+	func("Hello");			//this invoke returns integer which can be utilized
+    }
+}
+```
 
 # String Operations
 ## Try Parse
