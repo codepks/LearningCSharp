@@ -1153,8 +1153,106 @@ public class Program {
 }
 ```
 
-#Delegates
+# Delegates
+Anonymous Methods(C# 2.0) and Lambda expressions(C# 3.0) are compiled to delegate types in certain contexts. Sometimes, these features together are known as anonymous functions.
 
+```
+public delegate void someDelegate(string name);
+```
+1. When you declare thsi line then internally define the parameteric constructor which take only string paramter
+2. Thereby, when you make an object of `someDelegate` you need to to inialize the object by passing 
+
+```
+namespace ExtensionMethods
+{
+    public delegate void someDelegate(string name);
+    
+    public class Geeks
+    {
+        public void someFunction(string myName)  {
+            Console.WriteLine(myName);
+        }
+
+        public void someMethod(someDelegate myName)   {
+            myName("Hello from the other side");
+        }
+    }
+
+    class GeeksTest {
+        static void Main(string[] args)   {
+            Geeks obj = new Geeks();
+            someDelegate someDel = new someDelegate(obj.someFunction);
+            someDel("Hello World"); //invoking via delegate inside main function
+
+            obj.someMethod(someDel); //invoking via delegate in some other function
+        }
+    }
+}
+```
+
+## Multicast Delegates
+It is used to add more subscription of the functions to the delegates
+```
+namespace ExtensionMethods
+{
+    public delegate void someDelegate(string name);
+    public class Geeks
+    {
+        public void someFunction(string myName) {
+            Console.WriteLine(myName);
+        }
+
+        public void someFunction2(string myName)  {
+            Console.WriteLine(myName);
+        }
+
+        public void someMethod(someDelegate myName)  {
+            myName("Hello from the other side");
+        }
+    }
+
+    class GeeksTest {
+        static void Main(string[] args) {
+            Geeks obj = new Geeks();
+            someDelegate someDel = new someDelegate(obj.someFunction); //doing object initialization
+	    someDelegate someDel = obj.someFunction; //other way of doing the same as above
+            someDel += obj.someFunction2;
+
+            someDel("Hello World"); //call some1 and some2
+
+            obj.someMethod(someDel); //this also calls some1 and some2
+        }
+    }
+}
+```
+
+## Predicate Delegate
+
+1. Predicate delega works for `boolean` return kind of function which has only **one input parameter**
+'''
+ public class Geeks
+ {
+     public bool someFunction3(string someStr) {
+         Console.WriteLine(someStr);
+         return true;
+     }
+ }
+
+
+
+ class GeeksTest {
+     static void Main(string[] args) 
+     {
+         Geeks geeks = new Geeks();
+
+         Predicate<string> predicate = geeks.someFunction3;
+         predicate("Hello");
+
+         Predicate<string>  predicate1 = (x) => { Console.WriteLine(x); return true; };
+         predicate1("Hello 2");
+     }
+ }
+ ```
 
 # String Operations
 ## Try Parse
