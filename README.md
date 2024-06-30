@@ -2734,3 +2734,44 @@ HashTable
 3. In Hashtable, there is no need to specify the type of the key and value.
 4. The data retrieval is slower than Dictionary due to boxing/ unboxing.
 5. It is thread safe.
+
+# Events
+
+# EventAggregator
+
+# IDisposable
+1. Used for unmanaged resources, those which are not managed by Garbage Collector
+ - File Access
+ - Network Access
+ - Database Access
+ - Talking to operating system
+ - Anything to do with Graphics
+ - Files and Sockets
+
+```
+public class UnmanagedResource : IDisposable
+{
+	public void DoWork() {
+		Console.WriteLine{"Starting Connection"};
+		Console.WriteLine{"Doing Work"};
+	}
+	
+	public void Dispose() {
+		Console.WriteLine{"Starting Connection"};
+	}
+}
+```
+Dispose function should be called at the end of the life of UnmanagedResource object
+
+# Using Keyword
+1. It is used ro automating calling the Dispose() function.
+2. Within `using` curly braces usage the operation is performed especially for IDisposable functions
+3. Using keyword makes sure that `Dispose()` method is called even if the exception occurs or devloper forgets to add called `Disposable()` method.
+
+```
+using (var obj = new UnmanagedResource())
+{
+	obj.DoWork();
+	//obj.Dipose();		//gets called even if you forget to
+}
+```
