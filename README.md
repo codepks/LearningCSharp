@@ -1664,14 +1664,68 @@ myList.CopyTo(arr, 2);
 arrlist.Equals(arrlist)
 ```
 
-## Strings
+# Strings
+## Verbatim String Literal – @
+Three main uses:
+1. Keyword `as` an Identifier
+The @ symbol prefixes the keyword, so the compiler takes keyword as an identifier without any error as shown in the below example
+```
+string[] @for = {"C#", "PHP", "Java", "Python"};
+ 
+foreach (string @as in @for)
+{
+    Console.WriteLine("Element of Array: {0}", @as);
+}
+```
+2. Storing Path
+```
+// taking a string and prefix literal with @ symbol. 
+// Storing some location of file 
+string str1 = @"\\C:\Testing\New\Target";
+```
 
+## Class functions
+1. Compare()
+2. Concat
+3. Equals
+4. Length
 
+# switch case
+You can used strings in switch case
+```
+string str = "one";
+         
+switch (str) {
+     
+case "one":
+    Console.WriteLine("It is 1");
+    break;
+
+case "two":
+    Console.WriteLine("It is 2");
+    break;
+
+default:
+    Console.WriteLine("Nothing");
+```
+
+## String Builder
+1.  In situations where you need to perform repeated modifications to a string, we need StringBuilder class
+2.  To avoid string replacing, appending, removing or inserting new strings in the initial string C# introduce StringBuilder concept
+3.  They are more mutable compared to Strings
+
+```
+StringBuilder s = new StringBuilder("HELLO ", 20); 
+  
+s.Append("GFG"); 
+s.AppendLine("GEEKS"); 
+```
 
 # String Operations
 ## Try Parse
 ```
 bool TryParse(string input, out T result);
+
 ```
 int.TryParse attempts to parse the string "123" into an integer.
 
@@ -2014,3 +2068,403 @@ namespace HarryPotterBooks
 }
 
 ```
+
+# Tuple
+1. The word Tuple means “a data structure which consists of the multiple parts
+2. you can add elements from 1 to 8.
+
+```
+Tuple<string, string, int>My_Tuple2 = new Tuple<string, string, int>("Romil", "Python", 29);
+
+var My_Tuple2 = Tuple.Create(12, 30, 40, 50);
+```
+
+Acessing
+```
+Console.WriteLine("Element of My_Tuple2: " + My_Tuple2.Item1); 
+```
+
+1. You can have nested tuples too
+2. It implementes `Equals` function too
+3. It is of reference type
+
+
+# ValueTuple
+1. It is of `value` type
+2. It is faster and easier to use that Tuple
+
+```
+//ValueTuple with three elements
+ValueTuple<string, string, int> ValTpl2 = new ValueTuple<string,
+				string, int>("C#", "Java", 586);
+```
+
+Unnamed Member
+```
+ var author = (20, "Siya", "Ruby");
+```
+
+Named Member
+```
+// ValueTuple with three elements
+var library = (Book_id : 2340, Author_name
+	       : "Arundhati Roy", Book_name
+	       : "The God of Small Things");
+```
+
+Unnamed returning
+```
+static(int, string, string) TouristDetails()
+    {
+        return (384645, "Sophite", "USA");
+    }
+ 
+    // Main method
+    static public void Main()
+    {
+ 
+        // Store the data provided by the TouristDetails method
+        var(Tourist_Id, Tourist_Name, Country) = TouristDetails();
+ 
+        // Display data
+        Console.WriteLine("Tourist Details: ");
+        Console.WriteLine($ "Tourist Id: {Tourist_Id}");
+        Console.WriteLine($ "Tourist Name: {Tourist_Name}");
+        Console.WriteLine($ "Country: {Country}");
+```
+
+# Indexers and Propeties
+
+## Indexers 
+1. Allows class objects to be used as arrays
+2. The syntax is similar to properties
+3. `this` keyword is always used to declare an indexer.
+4. They are also known as **Smart Arrays** or **Parameterized** Property
+
+Note : **this**, **<params>** are the extra one 
+```
+class IndexerCreation 
+{
+     private string[] val = new string[3]; 
+     public string this[int index] 
+    {
+        get { 
+            return val[index];
+        }
+        set {
+            val[index] = value;
+        }
+    }
+}
+ 
+class main {
+     
+    public static void Main() {
+         
+        IndexerCreation ic = new IndexerCreation();
+ 
+        ic[0] = "C";
+        ic[1] = "CPP";
+	}
+}
+```
+Other points
+1. You can overload the indexers too with different data type and params
+2. You can also also multi-dimensionality with it
+
+
+## Properties
+1. They are special methods called accessors with getter and setters
+2. For read only property you can use on **get** accessor
+3. Auto implementation is also there
+
+```
+class Myprop { 
+    int _number; 
+    public int Number 
+    { 
+        get { 
+            return this._number; 
+        } 
+        set { 
+            this._number = value; 
+        }
+    }
+}
+```
+
+**Restrictions :** <br>
+1. A property cannot be passed via ref or out parameter to a method
+2. You cannot overload a property
+3. A property should not alter the state of the underlying variable when the get accessor is called
+
+
+# Ineritance
+Advantages
+1. Core resuability
+2. Code Maintainance
+3. Code organization
+
+Disadvantages:
+1. Tight coupling
+2. Fragile code due to dependency
+
+## Mulitple Ineritance
+
+```
+interface IShape {
+    double GetArea();
+}
+ 
+interface IColor {
+    string GetColor();
+}
+ 
+class Rectangle : IShape, IColor {
+    private double length;
+    private double breadth;
+    private string color;
+ 
+    public Rectangle(double length, double breadth, string color) {
+        this.length = length;
+        this.breadth = breadth;
+        this.color = color;
+    }
+ 
+    public double GetArea() {
+        return length * breadth;
+    }
+ 
+    public string GetColor()  {
+        return color;
+    }
+}
+ 
+class Program {
+    static void Main(string[] args)     {
+        Rectangle rect = new Rectangle(5, 10, "blue");
+        Console.WriteLine("Area of rectangle: " + rect.GetArea());
+        Console.WriteLine("Color of rectangle: " + rect.GetColor());
+    }
+}
+```
+
+## Constructor inheritance
+Use `base` keyword
+```
+class Vehicle
+{
+    public int speed;
+ 
+    public Vehicle(int speed)
+    {
+        this.speed = speed;
+    }
+}
+ 
+class Car : Vehicle
+{
+    public string model;
+ 
+    public Car(int speed, string model) : base(speed)
+    {
+        this.model = model;
+    }
+}
+```
+
+## Abstract Classes
+1. It cannot be instantiated
+2. **abstract** modifier can be used with **indexers**, **events**, and **properties** 
+
+```
+public abstract class Animal{
+    public abstract string Sound { get; }
+ 
+    public virtual void Move()  {
+        Console.WriteLine("Moving...");
+    }
+}
+ 
+public class Cat : Animal {
+    public override string Sound => "Meow";
+ 
+    public override void Move()  {
+        Console.WriteLine("Walking like a cat...");
+    }
+}
+```
+
+Note:
+1. Vritual methods can have implementation
+2. But abstract methods cannot
+
+## Sealed Class
+1. It is like `final` keyword in c++
+2. Even methods can be sealed too to stop further overriding of methods in further inheritance
+
+## Object class
+1. Every class in C# is directly or indirectly derived from the Object class
+2. In other programming languages, the built-in types like int, double, float, etc. do not have any object-oriented properties
+3. But in C#, we have no need for such wrapping due to the presence of value types that are inherited from the System.ValueType that is further inherited from System.Object.
+4. So in C#, value types also work similarly to reference types
+5. Reference types directly or indirectly inherit the object class by using other reference types.
+
+
+Functions
+1. **ReferenceEquals(Object, Object)**	: Determines whether the specified Object instances are the same instance.
+2. **Finalize()** : Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
+3. **Equals(Object, Object)** :	Determines whether the specified object instances are considered equal.
+4. **ToString()** : Returns a string that represents the current object
+
+# Interface
+```
+interface  <interface_name >
+{
+    // declare Events
+    // declare indexers
+    // declare methods 
+    // declare properties
+}
+```
+
+## Implement multiple interfaces with same name methods
+```
+interface G1 { 
+    	void mymethod(); 
+} 
+  
+interface G2 { 
+   	void mymethod(); 
+} 
+  
+class Geeks : G1, G2 { 
+	void G1.mymethod() { 
+	    Console.WriteLine("GeeksforGeeks"); 
+	} 
+	      
+	void G2.mymethod() { 
+	    Console.WriteLine("GeeksforGeeks"); 
+	} 
+}
+```
+
+## Explicit Interface Implementation
+Explicitly telling the compiler that a particular member belongs to that particular interface is called Explicit interface implementation.  Example is same as the section before.
+
+
+# Multithreading
+
+Initialize the thread object with a function and initiate the thread.
+```
+class GFG
+{
+    public static void Main()
+    {
+        Thread t1 = new Thread(someMethod);
+        t1.Start();
+
+        t1.Join(); //Making main thread wait before exit till t1 ends
+    }
+    public static void someMethod()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Thread.Sleep(10);
+            Console.WriteLine("Doing some work");
+        }
+    }
+}
+```
+
+## Threadpool
+```
+    static void Main() {
+        ThreadPool.QueueUserWorkItem(Worker, "Hello, world!");
+        Console.WriteLine("Done");
+    }
+ 
+    static void Worker(object state)
+    {
+        string message = (string)state;
+        for (int i = 0; i < 10; i++) {
+            Console.WriteLine(message);
+            Thread.Sleep(100);
+        }
+    }
+```
+
+## Thread Types
+### Foreground Thread
+1. These are task critical threads which complete their task even after main thread ends
+2. They are created by default
+
+```
+static void Main(string[] args)
+    {
+ 
+        // Creating and initializing thread
+        Thread thr = new Thread(mythreadFunc);
+        thr.Start();
+        Console.WriteLine("Main Thread Ends!!");
+    }
+```
+
+### Background Thread
+1. These are not task critical threads
+2. You need to specify if that is a background thread
+3. They end with before or with the main thread 
+```
+static void Main(string[] args)
+    {
+        Thread thr = new Thread(mythread);
+ 
+        thr.Name = "Mythread";
+        thr.Start();
+        thr.IsBackground = true;
+ 
+        Console.WriteLine("Main Thread Ends!!");
+    }
+```
+
+## Main Thread
+Getting access to current thread
+```
+Thread thr;
+thr = Thread.CurrentThread;
+```
+
+You cannot join the current thread else it wil cause deadlock as it will never end.
+
+## States of thread
+1. Unstarted : During the time of declration until `Start()` call
+2. Runnable : When `Start()` is called
+3. No Running : When methods like `Wait()`, `Sleep()`, `Suspend()` is called
+4. Done state : When it finishes
+
+Methods to check states:
+1. IsAlive()
+2. ThreadState ThreadState{ get; }
+
+Pause/Suspend a thread and resume
+1. Suspend() method is called to suspend the thread.
+2. Resume() method is called to resume the suspended thread.
+
+
+## Schedule a thread
+A thread is scheduled using `Start()`
+```
+Start()
+Start(Object)
+```
+Example
+```
+Thread thr1 = new Thread(obj.Job1); 
+Thread thr2 = new Thread(Job2); 
+
+// Start the execution of Thread 
+// Using Start(Object) method 
+thr1.Start(01); 
+thr2.Start("Hello")
+```
+
