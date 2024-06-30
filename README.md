@@ -2564,3 +2564,173 @@ public static async Task TeachClass12() {
 
 ```
 **WaitAll()** : Waits for all of the provided Task objects to complete execution within a specified number of milliseconds or until the wait is cancelled.
+
+
+# Generics
+
+## List
+1. List is a generic whereas ArrayList is a non-generic collection
+2. The List class implements the ICollection<T>, IEnumerable<T>, IList<T>, IReadOnlyCollection<T>, IReadOnlyList<T>, ICollection, IEnumerable, and IList interface.
+
+```
+List<string> my_list1 = new List<string>() { “geeks”, “Geek123”, “GeeksforGeeks” };
+```
+## Sorted List
+1. SortedList is a collection of key/value pairs which are sorted according to keys. Like **Ordered List**
+2. By default, this collection sort the key/value pairs in ascending order
+3. In SortedList, duplicate keys are not allowed.
+4. In SortedList you cannot store keys of different data types
+
+```
+SortedList my_slist1 = new SortedList();
+ 
+my_slist1.Add(1.02, "This");
+my_slist1.Add(1.07, "Is");
+my_slist1.Add(1.04, "SortedList");
+my_slist1.Add(1.01, "Tutorial");
+```
+
+## Hash Set
+1. HashSet is an unordered collection of unique elements like **Unordered Set**
+2. The order of the element is not defined. You cannot sort the elements of HashSet.
+3. You can do union of elements too ` myhash1.UnionWith(myhash2);`
+4. You can do intersection too `myhash1.IntersectWith(myhash2);`
+
+```
+HashSet<string> myhash1 = new HashSet<string>();
+
+// Add the elements in HashSet
+// Using Add method
+myhash1.Add("C");
+myhash1.Add("C++");
+myhash1.Add("C#");
+myhash1.Add("Java");
+myhash1.Add("Ruby");
+```
+
+## Sorted Set
+1. It is like **Ordered Set**
+2. In SortedSet, the order of the element is ascending.
+
+```
+SortedSet<int> my_Set1 = new SortedSet<int>();
+ 
+my_Set1.Add(101);
+my_Set1.Add(1001);
+my_Set1.Add(10001);
+my_Set1.Add(100001);
+Console.WriteLine("Elements of my_Set1:");
+```
+
+## Dictionary
+1.It is like **unordered Map**
+2. A generic collection which is generally used to store key/value pairs
+
+```
+  Dictionary<int, string> My_dict1 =  new Dictionary<int, string>(); 
+   
+  // Adding key/value pairs 
+  // in the Dictionary
+  // Using Add() method
+  My_dict1.Add(1123, "Welcome");
+  My_dict1.Add(1124, "to");
+  My_dict1.Add(1125, "GeeksforGeeks");
+```
+
+Searching
+```
+foreach(KeyValuePair<int, string> ele1 in My_dict1)
+          {
+              Console.WriteLine("{0} and {1}",
+                        ele1.Key, ele1.Value);
+          }
+```
+
+## Sorted Dictionary
+It is like **ordered map** and uses **BST** for faster insertion and searching that's why faster but more memory taking compared to sortedList
+```
+SortedDictionary<int, string> My_sdict = 
+            new SortedDictionary<int, string>();
+ 
+        // Adding key/value pair in Sorted 
+        // Dictionary Using Add() method
+        My_sdict.Add(004, "Ask.com");
+        My_sdict.Add(003, "Yahoo");
+        My_sdict.Add(001, "Google");
+        My_sdict.Add(005, "AOL.com");
+        My_sdict.Add(002, "Bing");
+        Console.WriteLine("Top Search Engines:");
+```
+
+## HashTable
+1. It is more thread saef compared to HashSet.
+2. Hashtable, you can store elements of the same type and of the different types.
+
+```
+Hashtable my_hashtable1 = new Hashtable();
+ 
+// Adding key/value pair 
+// in the hashtable
+// Using Add() method
+my_hashtable1.Add("A1", "Welcome");
+my_hashtable1.Add("A2", "to");
+my_hashtable1.Add("A3", "GeeksforGeeks");
+
+```
+
+## Stack
+```
+Stack my_stack = new Stack();
+ 
+// Adding elements in the Stack
+// Using Push method
+my_stack.Push("Geeks");
+my_stack.Push("geeksforgeeks");
+my_stack.Push('G');
+my_stack.Push(null);
+my_stack.Push(1234);
+my_stack.Push(490.98);
+```
+
+## Queue
+```
+Queue my_queue = new Queue(); 
+  
+// Adding elements in Queue 
+// Using Enqueue() method 
+my_queue.Enqueue("GFG"); 
+my_queue.Enqueue(1); 
+
+ my_queue.Dequeue(); 
+```
+
+## Linked List
+```
+LinkedList<String> my_list = new LinkedList<String>();
+ 
+// Adding elements in the LinkedList
+// Using AddLast() method
+my_list.AddLast("Zoya");
+my_list.AddLast("Shilpa");
+
+my_list.Remove(my_list.First);
+```
+Other function:
+1. AddFirst
+2. AddLast
+
+## HashTable vs Dictionary
+Dictionary
+1. Generic
+2. Order is maintained
+3. In Dictionary, you must specify the type of key and value.
+4. The data retrieval is faster than Hashtable due to no boxing/ unboxing.
+5. It’s recommended to use ConcurrentDictionary<TKey, TValue> which provides thread-safe operations.
+
+
+HashTable
+1. Non-generic
+2. No order is maintained
+3. In Hashtable, there is no need to specify the type of the key and value.
+4. The data retrieval is slower than Dictionary due to boxing/ unboxing.
+5. It is thread safe.
