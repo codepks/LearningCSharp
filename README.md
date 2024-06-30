@@ -2468,3 +2468,99 @@ thr1.Start(01);
 thr2.Start("Hello")
 ```
 
+## Setting Thread Priority
+```
+Thread T1 = new Thread(work); 
+Thread T2 = new Thread(work); 
+Thread T3 = new Thread(work); 
+
+// Set the priority of threads 
+T2.Priority = ThreadPriority.Highest; 
+T3.Priority = ThreadPriority.BelowNormal; 
+T1.Start(); 
+T2.Start(); 
+T3.Start();
+```
+
+## Task vs Thread
+1. Task is like promise of C#
+
+Maiking functions run parallely <br>
+1. Without async await
+```
+public class GFG{ 
+
+static void Main(string[] args) 
+{ 
+	Demo(); 
+	Console.ReadLine(); 
+
+} 
+public static void Demo() { 
+	var watch = new System.Diagnostics.Stopwatch(); 
+	watch.Start(); 
+	StartSchoolAssembly(); 
+	TeachClass12(); 
+	watch.Stop(); 
+	Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms"); 
+} 
+
+
+public static void StartSchoolAssembly() { 
+	Thread.Sleep(8000); 
+	Console.WriteLine("School Started"); 
+} 
+
+
+public static void TeachClass12() { 
+	Thread.Sleep(3000); 
+	Console.WriteLine("Taught class 12"); 
+
+} 
+} 
+```
+
+2. With async/await
+```
+// C# program for async and await 
+using System; 
+using System.Threading; 
+using System.Threading.Tasks; 
+
+public class GFG{ 
+
+static void Main(string[] args) 
+{ 
+	Demo(); 
+	Console.ReadLine(); 
+} 
+
+public static void Demo() { 
+	var watch = new System.Diagnostics.Stopwatch(); 
+	watch.Start(); 
+
+	var task1 = StartSchoolAssembly(); 
+	var task2 = TeachClass12(); 
+	Task.WaitAll(task1, task2, task3); 
+	watch.Stop(); 
+	Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms"); 
+	
+} 
+
+public static async Task StartSchoolAssembly() { 
+	await Task.Run(() => 	{ 
+		Thread.Sleep(8000); 
+		Console.WriteLine("School Started"); 
+	}); 
+}
+
+public static async Task TeachClass12() { 
+	await Task.Run(() => 	{ 
+		Thread.Sleep(3000); 
+		Console.WriteLine("Taught class 12"); 
+	}); 
+} 	
+} 
+
+```
+**WaitAll()** : Waits for all of the provided Task objects to complete execution within a specified number of milliseconds or until the wait is cancelled.
