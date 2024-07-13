@@ -1175,6 +1175,8 @@ Numbers Divisible by 3 : 36 12 15 18 27 9
 Using `Func` first param being input and other being output
 ```
 Func<int, int> square = x => x * x;
+
+Func<int, int, int> add = (x, y) => x + y;
 ```
 
 `Action` : For no return type
@@ -1185,7 +1187,14 @@ Action<string> greet = name =>
     Console.WriteLine(greeting);
 };
 ```
-
+For printing
+```
+Action<List<Person>> printList = peopleList =>
+{
+    foreach (var person in peopleList)
+        Console.WriteLine($"{person.name} {person.surname} {person.age}");
+};
+```
 
 ## Local Function
 1. It is like a normal function within a function but does not have a access modifier
@@ -1634,6 +1643,54 @@ The LINQ returns IOrderedIEnumerable, which is converted to Array using ToArray(
 ```
 arr = arr.OrderByDescending(c => c).ToArray();
 ```
+### Ordering, Summing, Selecting
+```
+class Person
+{
+    string name;
+    string surname;
+    int age;
+    public Person(string name, string surname, int age)
+    {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+
+    static void Main(string[] args)    {
+        List<Person> people = new List<Person>();
+
+        people.Add(new Person("John", "Doe", 30));
+        people.Add(new Person("Jane", "Doe", 25));
+        people.Add(new Person("Bob", "Smith", 40));
+        people.Add(new Person("Alice", "Johnson", 35));
+        people.Add(new Person("Tom", "Lee", 28));
+        people.Add(new Person("Emily", "Wong", 22));
+
+        Action<List<Person>> printList = peopleList =>  {
+            foreach (var person in peopleList)
+                Console.WriteLine($"{person.name} {person.surname} {person.age}");
+        };
+
+        Console.WriteLine();
+
+        var peopleLastNameOrderDescending = people.OrderByDescending(p => p.surname).ThenByDescending(p => p.name).ToList();
+        printList(peopleLastNameOrderDescending);
+        Console.WriteLine();
+
+        var selectPeopleWithAgeGreaterThan30 = people.Where(p => p.age > 30).ToList();
+        printList(peopleLastNameOrderDescending);
+        Console.WriteLine();
+
+        var sumeAge = people.Sum(x => x.age);
+        Console.WriteLine(sumeAge);
+        var sumPeopleAgeWithFirst5AscendingNameOrder = people.OrderBy(p => p.name).Sum(x => x.age) ;
+
+    }
+
+}
+```
+
 
 # Array List
 1. It is used to create a dynamic array
