@@ -2010,6 +2010,22 @@ namespace RectangleApplication {
 6.  If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
 7.  Both List<T> and ArrayList implement IEnumberable
 
+# IEnumerable vs IList vs ICollection
+## IEnumerable
+1. It is a basic list
+2. It is read only and you cannot edit
+3. It doesn't hold the count of elements inside it, so you need to iterate over to get the count
+4. We do filtering in IEnumerable using **where** clause
+
+## ICollection
+1. It extends IEnumerable
+2. You can **add, remove, update** the collection
+3. It holds the count of elements unlike the IEnumerable and no need for iterating over
+
+## IList
+1. Extends ICollection
+2. Supports **Inserting or removing** from middle of the list
+
 # Yield
 The yield keyword in C# allows you to create custom iterators for your code. When you encounter yield in a method or operator, it signals the C# compiler to generate code for a custom iterator. Here’s how it works: <br>
 
