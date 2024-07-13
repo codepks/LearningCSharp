@@ -3109,9 +3109,80 @@ mixedList.Add("Two");
 mixedList.Add(3);
 mixedList.Add(new Student() { StudentID = 1, StudentName = "Bill" });
 
-
+// Method 1
 var strList = from mix in mixedList.OfType<string>()
               select mix;
 
+//Method 2
 var intList = mixedList.OfType<int>();
 ```
+
+### OrderBy
+```
+IList<Student> studentList = new List<Student>() { 
+    new Student() { StudentID = 1, StudentName = "John", Age = 18 } ,
+    new Student() { StudentID = 2, StudentName = "Steve",  Age = 15 } ,
+    new Student() { StudentID = 3, StudentName = "Bill",  Age = 25 } ,
+    new Student() { StudentID = 4, StudentName = "Ram" , Age = 20 } ,
+    new Student() { StudentID = 5, StudentName = "Ron" , Age = 19 } 
+};
+
+//Method 1
+var orderByResult = from s in studentList
+                   orderby s.StudentName 
+                   select s;
+//Method 2
+var orderByResult2 = studenList.OrderBy(x => x.StudentName);
+```
+
+### ThenBy
+Use ThenBy() method after OrderBy to sort the collection on another field in ascending/descending order based on what was done before
+```
+IList<Student> studentList = new List<Student>() { 
+    new Student() { StudentID = 1, StudentName = "John", Age = 18 } ,
+    new Student() { StudentID = 2, StudentName = "Steve",  Age = 15 } ,
+    new Student() { StudentID = 3, StudentName = "Bill",  Age = 25 } ,
+    new Student() { StudentID = 4, StudentName = "Ram" , Age = 20 } ,
+    new Student() { StudentID = 5, StudentName = "Ron" , Age = 19 }, 
+    new Student() { StudentID = 6, StudentName = "Ram" , Age = 18 }
+};
+var thenByResult = studentList.OrderBy(s => s.StudentName).ThenBy(s => s.Age);
+
+var thenByDescResult = studentList.OrderBy(s => s.StudentName).ThenByDescending(s => s.Age);
+```
+
+**Note : ThenBy or ThenByDescending is NOT applicable in Query syntax.**
+
+### GroupBy
+1. The grouping operators create a group of elements based on the given key.
+2. We may need to iterate over twice from the resultant query as the result gives a multidimentional list
+```
+IList<Student> studentList = new List<Student>() { 
+        new Student() { StudentID = 1, StudentName = "John", Age = 18 } ,
+        new Student() { StudentID = 2, StudentName = "Steve",  Age = 21 } ,
+        new Student() { StudentID = 3, StudentName = "Bill",  Age = 18 } ,
+        new Student() { StudentID = 4, StudentName = "Ram" , Age = 20 } ,
+        new Student() { StudentID = 5, StudentName = "Abram" , Age = 21 } 
+    };
+
+// Method 1
+var groupedResult = from s in studentList
+                    group s by s.Age;
+
+// Method 2
+var groupedResult = studentList.GroupBy(s => s.Age);
+
+// Method 3 - Using Lookup
+var lookupResult = studentList.ToLookup(s => s.age);
+
+//iterate each group        
+foreach (var ageGroup in groupedResult) {
+    Console.WriteLine("Age Group: {0}", ageGroup .Key); //Each group has a key 
+    foreach(Student s in ageGroup) // Each group has inner collection
+        Console.WriteLine("Student Name: {0}", s.StudentName);
+}
+```
+
+### Join
+The Join operator operates on two collections, inner collection & outer collection. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
+
