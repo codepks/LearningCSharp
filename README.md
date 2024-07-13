@@ -2948,3 +2948,122 @@ Method 3:
 ```
 var ageBetween12and20v2 = studentArray.Where( x => x.Age > 12 && x.Age < 20 );
 ```
+
+## Applicability
+It is applicable for classes implementing `IQueryable` and `IEnumberable`
+1. Enumerable classes
+- List
+- Dictionary
+- HashSet
+- Queue
+- SortedDictionary
+- SortedList
+- SortedSet
+- LinkedList
+- Stack
+
+Functions list : [see the image here](https://www.tutorialsteacher.com/Content/images/linq/Enumerable.png)
+
+2. Queryable classes : Supported by many frameworks
+- LINQ to SQL
+- Entity Framework
+- LINQ to Amazon
+- LINQ to LDAP
+
+Functions list : [see this image for functions](https://www.tutorialsteacher.com/Content/images/linq/queryable.png)
+
+
+## Syntax
+```
+from <range variable> in <IEnumerable<T> or IQueryable<T> Collection>
+
+<Standard Query Operators> <lambda expression>
+
+<select or groupBy operator> <result formation>
+```
+[check syntax here in image] (https://www.tutorialsteacher.com/Content/images/linq/linq-query-syntax.png)
+
+```
+ IList<string> stringList = new List<string>() {
+     "C# Tutorials",
+     "VB.NET Tutorials",
+     "Learn C++",
+     "MVC Tutorials" ,
+     "Java"
+ };
+
+//Method 1 : Linq Query Syntax
+ var tutorials = from stringL in stringList
+                 where stringL.Contains("Tutorials")
+                 select stringL;
+
+//Method 2 : LINQ Method Syntax
+ var tut = stringList.Where(x => x.Contains("Tutorials"));
+
+```
+The extension method `Where()` is defined in the Enumerable class.
+
+## Lambda Function Evolution
+### Evolution
+[image source 1](https://www.tutorialsteacher.com/Content/images/linq/lambda-expression-1.png)
+
+[image source 2](https://www.tutorialsteacher.com/Content/images/linq/lambda-expression-2.png)
+
+### Multiple Params
+```
+(s, youngAge) => s.Age >= youngage;
+```
+Above we are check with student age satisfying condition that it is greater than youngage
+
+### Multiple Statements
+```
+(s, youngAge) =>
+{
+  Console.WriteLine("Lambda expression with multiple statements in the body");
+    
+  Return s.Age >= youngAge;
+}
+```
+### Lambda in use
+```
+Func<Student, bool> isStudentTeenAger = s => s.age > 12 && s.age < 20;
+Student std = new Student() { age = 21 };
+bool isTeen = isStudentTeenAger(std);// returns false
+```
+### Func Delegate
+Has last parameter as the return type
+```
+Func<Student, bool> isStudentTeenAger = s => s.age > 12 && s.age < 20;
+```
+
+bool is the return type
+
+### Action Delegate
+No return type is involved
+```
+Action<Student> PrintStudentDetail = s => Console.WriteLine("Name: {0}, Age: {1} ", s.StudentName, s.Age)
+```
+
+### Using lambda in LINQ
+```
+Func<Student, bool> func = s => s.Age > 12 && s.Age < 20;
+var ageBetween12and20V2 = studentArray.Where(func);
+````
+
+## Standard LINQ Functions
+```
+Filtering	-- Where, OfType
+Sorting		-- OrderBy, OrderByDescending, ThenBy, ThenByDescending, Reverse
+Grouping	-- GroupBy, ToLookup
+Join		-- GroupJoin, Join
+Projection	-- Select, SelectMany
+Aggregation	-- Aggregate, Average, Count, LongCount, Max, Min, Sum
+Quantifiers	-- All, Any, Contains
+Elements	-- ElementAt, ElementAtOrDefault, First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault
+Set		-- Distinct, Except, Intersect, Union
+Partitioning	-- Skip, SkipWhile, Take, TakeWhile
+Concatenation	-- Concat
+Equality	-- SequenceEqual
+Generation	-- DefaultEmpty, Empty, Range, Repeat
+Conversion	-- AsEnumerable, AsQueryable, Cast, ToArray, ToDictionary, ToList
+```
