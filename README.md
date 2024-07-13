@@ -2006,6 +2006,9 @@ namespace RectangleApplication {
 2. This interface is found in the System.Collections namespace and is a key part of the .NET Framework.
 3. It allows you to iterate over a collection of objects using constructs like foreach loops12.
 4. When you implement IEnumerable<T>, you can use it to create LINQ queries or leverage the yield keyword (for C# only) to build efficient iterators
+5.  IEnumerable is read-only and List is not.
+6.  If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
+7.  Both List<T> and ArrayList implement IEnumberable
 
 # Yield
 The yield keyword in C# allows you to create custom iterators for your code. When you encounter yield in a method or operator, it signals the C# compiler to generate code for a custom iterator. Here’s how it works: <br>
