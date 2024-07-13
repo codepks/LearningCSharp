@@ -1086,7 +1086,7 @@ people = people.OrderBy(x => x.LastName);
 ```
 
 1. `x` represents 1 person
-2. 
+2. the lambda expression takes `x` as an input and converts it into x.LastName and passes it to OrderBy function
  
 ## Partial Methods
 1. Declaration and defition can be in separate classes too due to partial classes
@@ -1171,6 +1171,21 @@ The list : 36 71 12 15 29 18 27 17 9 34
 Squares : 1296 5041 144 225 841 324 729 289 81 1156 
 Numbers Divisible by 3 : 36 12 15 18 27 9 
 ```
+**Non list operations**<br>
+Using `Func` first param being input and other being output
+```
+Func<int, int> square = x => x * x;
+```
+
+`Action` : For no return type
+```
+Action<string> greet = name =>
+{
+    string greeting = $"Hello {name}!";
+    Console.WriteLine(greeting);
+};
+```
+
 
 ## Local Function
 1. It is like a normal function within a function but does not have a access modifier
