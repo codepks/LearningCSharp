@@ -1076,6 +1076,17 @@ MyButton.Click += delegate(Object obj, EventArgs ev)
     System.Windows.Forms.MessageBox.Show("Complete without error...!!"); 
 } 
 ```
+
+## OrderBy
+```
+people = people.OrderBy(x => x.LastName);
+```
+```
+(parameters) => (expressions)
+```
+
+1. `x` represents 1 person
+2. 
  
 ## Partial Methods
 1. Declaration and defition can be in separate classes too due to partial classes
@@ -1128,6 +1139,37 @@ namespace ExtensionMethods
         }
     }
 }
+```
+
+## Enumeratof of List
+```
+List<int> list = new List<int> { 1, 2, 3, 4, 6 };
+List<int>.Enumerator enumerator = list.GetEnumerator(); // <--->
+
+enumerator.MoveNext(); //gets you 1
+enumerator.MoveNext(); //gets you 2
+
+Console.WriteLine(enumerator.Current);
+```
+
+Enumerator gets you the pointer of the list
+
+## Lambda Expressions
+1. They are bit different from C++
+2. Mostly operated on lists
+```
+// List to store numbers
+List<int> numbersList = new List<int>() {36, 71, 12, 15, 29, 18, 27, 17, 9, 34};
+
+// Creates a new list
+var squareList = numbersList.Select(x => x * x);
+var divBy3List = numbersList.FindAll(x => (x % 3) == 0);
+```
+Output
+```
+The list : 36 71 12 15 29 18 27 17 9 34 
+Squares : 1296 5041 144 225 841 324 729 289 81 1156 
+Numbers Divisible by 3 : 36 12 15 18 27 9 
 ```
 
 ## Local Function
