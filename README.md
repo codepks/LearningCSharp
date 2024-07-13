@@ -3067,3 +3067,51 @@ Equality	-- SequenceEqual
 Generation	-- DefaultEmpty, Empty, Range, Repeat
 Conversion	-- AsEnumerable, AsQueryable, Cast, ToArray, ToDictionary, ToList
 ```
+
+### Where
+Filters the collection based on a given criteria expression and returns a new collection
+
+```
+IList<Student> studentList = new List<Student>() { 
+        new Student() { StudentID = 1, StudentName = "John", Age = 13} ,
+        new Student() { StudentID = 2, StudentName = "Moin",  Age = 21 } ,
+        new Student() { StudentID = 3, StudentName = "Bill",  Age = 18 } ,
+        new Student() { StudentID = 4, StudentName = "Ram" , Age = 20} ,
+        new Student() { StudentID = 5, StudentName = "Ron" , Age = 15 } 
+    };
+
+var filteredResult = from s in studentList
+                    where s.Age > 12 && s.Age < 20
+                    select s.StudentName;
+```
+
+**Index** overload <br>
+The second parameter of `Where` can have index overload 
+```
+var filteredResult = studentList.Where((s, i) => { 
+            if(i % 2 ==  0) // if it is even element
+                return true;
+                
+        return false;
+    });
+
+foreach (var std in filteredResult)
+        Console.WriteLine(std.StudentName);
+```
+
+### OfType
+Filtering based on casting
+```
+IList mixedList = new ArrayList();
+mixedList.Add(0);
+mixedList.Add("One");
+mixedList.Add("Two");
+mixedList.Add(3);
+mixedList.Add(new Student() { StudentID = 1, StudentName = "Bill" });
+
+
+var strList = from mix in mixedList.OfType<string>()
+              select mix;
+
+var intList = mixedList.OfType<int>();
+```
