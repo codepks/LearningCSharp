@@ -3186,7 +3186,58 @@ foreach (var ageGroup in groupedResult) {
 ### Join
 1. The Join operator operates on two collections, inner collection & outer collection.
 2. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
+3. Has 5 params to take care of
+	- outer
+	- inner
+	- outerKeySelector
+	- innerKeySelector
+	- resultSelector
 
 Examples:
-[LINQ Examples/Example 1.cs](https://github.com/codepks/LearningCSharp/blob/main/LINQ%20Examples/Example%201.cs)
+[Example 1](https://github.com/codepks/LearningCSharp/blob/main/LINQ%20Examples/Example%201.cs)
 
+**Syntax 1**<br>
+```
+var innerJoin = studentList.Join(// outer sequence 
+                      standardList,  			// inner sequence 
+                      student => student.StandardID,    // outerKeySelector
+                      standard => standard.StandardID,  // innerKeySelector
+                      (student, standard) => new  	// result selector
+		      {
+			StudentName = student.StudentName,
+			StandardName = standard.StandardName
+		      });
+```
+**Syntax 2**<br>
+```
+var adcInDataDivadcHazeData = 	from adcNorm in adcInData
+
+			      	//holding elements from both the lists
+                              	join adcHaze in adcHazeData
+
+			      	//Tell linking condition
+                              	on new { adcNorm.Collector, adcNorm.Throughtput} equals
+				   new { adcHaze.Collector, adcHaze.Throughtput }
+
+				// Tell how your output should be like
+                              	select new {  adcNorm.Throughtput, 
+                                            adcNorm.Collector, adcNorm.ADCInValue,
+                                            adcRPPMValue = adcNorm.ADCOutValue / adcHaze.ADCOutValue }; 
+```
+
+
+**Join in Query Syntax vs Method Syntax** <br>
+```
+var customerDescription =     from cust in customers
+			      join od in orders
+			      on cust.Name equals od.CustomerName
+			      select new { cust.Name, cust.Description };
+
+var customerDescription2 =    customers.Join(orders,
+			      cust => cust.Name,		//key selector
+			      od => od.CustomerName,		//key selector
+			      (cust, od) => new { cust.Name, cust.Description });
+```
+
+1. The **key selector** for the outer sequence `student => student.StandardID` indicates that take StandardID field of each elements of studentList should be match with the key of inner sequence `standard => standard.StandardID` . If value of both the key field is matched then include that element into **result**.
+2. The **last parameter** in Join method is an expression to formulate the **result**. In the above example, result selector includes `StudentName` and `StandardName` property of both the sequence.
