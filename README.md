@@ -3250,6 +3250,16 @@ var customerDescription2 =    customers.Join(orders,
 
 ### Left OuterJoin
 Here we take care of all the non-matching elements too
+```
+var customerDescription =     from cust in customers
+			      join od in orders
+			      on cust.Name equals od.CustomerName into eGroup
+				from name in eGroup.DefaultIfEmpty //for missing names
+			      select new {
+					CustomerName = cust.Name,
+					CustDesc = d == null ? "No Description" : od.Description
+					};
+```
 
 ### Group Join
 [Understand here](https://www.youtube.com/watch?v=Da3akpqjaR4&list=PL6n9fhu94yhWi8K02Eqxp3Xyh_OmQ0Rp6&index=21&ab_channel=kudvenkat)
@@ -3297,7 +3307,7 @@ Here we take care of all the non-matching elements too
 	}
 ```	
 
- **Output**
+ **Output** <br>
     Standard 1
     John
     Moin
