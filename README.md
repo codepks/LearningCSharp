@@ -3187,3 +3187,5 @@ foreach (var ageGroup in groupedResult) {
 1. The Join operator operates on two collections, inner collection & outer collection.
 2. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
 
+Examples:
+[source 1](LINQ_AdvanceEg1)
