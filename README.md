@@ -3244,3 +3244,48 @@ var customerDescription2 =    customers.Join(orders,
 2. The **last parameter** in Join method is an expression to formulate the **result**. In the above example, result selector includes `StudentName` and `StandardName` property of both the sequence.
 
 ### Group Join
+```
+ IList<Student> studentList = new List<Student>() {
+ new Student() { StudentID = 1, StudentName = "John", StandardID =1 },
+ new Student() { StudentID = 2, StudentName = "Moin", StandardID =1 },
+ new Student() { StudentID = 3, StudentName = "Bill", StandardID =2 },
+ new Student() { StudentID = 4, StudentName = "Ram",  StandardID =2 },
+ new Student() { StudentID = 5, StudentName = "Ron" }
+ };
+
+ IList<Standard> standardList = new List<Standard>() {
+ new Standard(){ StandardID = 1, StandardName="Standard 1"},
+ new Standard(){ StandardID = 2, StandardName="Standard 2"},
+ new Standard(){ StandardID = 3, StandardName="Standard 3"}
+ };
+
+//Method Syntax
+ var groupJoin = standardList.GroupJoin(studentList,  //inner sequence
+                                 std => std.StandardID, //outerKeySelector 
+                                 s => s.StandardID,     //innerKeySelector
+                                 (std,studentsGroup) => new // resultSelector 
+                                 {
+                                     StandarFulldName = std.StandardName,
+                                     Students = studentsGroup
+                                 });
+
+// Query Syntax
+var groupJoin = from std in standardList 
+                    join s in studentList 
+                    on std.StandardID equals s.StandardID
+                    into studentGroup
+                    select new { 
+		      Students = studentGroup , 
+		      StandardName = std.StandardName 
+		    };
+
+ foreach (var item in groupJoin) {
+     Console.WriteLine(item.StandarFulldName);
+     foreach (var stud in item.Students)
+         Console.WriteLine(stud.StudentName);
+ }
+```
+1. The **key selector** for the outer sequence `standard => standard.StandardID` indicates that **StandardID** field of each elements in standardList should be match with the key of inner sequence studentList `student => student.StandardID`
+2. result selector includes grouped collection `studentGroup` and `StandardName`
+
+
