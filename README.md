@@ -3248,6 +3248,9 @@ var customerDescription2 =    customers.Join(orders,
 1. The **key selector** for the outer sequence `student => student.StandardID` indicates that take StandardID field of each elements of studentList should be match with the key of inner sequence `standard => standard.StandardID` . If value of both the key field is matched then include that element into **result**.
 2. The **last parameter** in Join method is an expression to formulate the **result**. In the above example, result selector includes `StudentName` and `StandardName` property of both the sequence.
 
+### Left OuterJoin
+Here we take care of all the non-matching elements too
+
 ### Group Join
 [Understand here](https://www.youtube.com/watch?v=Da3akpqjaR4&list=PL6n9fhu94yhWi8K02Eqxp3Xyh_OmQ0Rp6&index=21&ab_channel=kudvenkat)
 
@@ -3265,11 +3268,12 @@ var customerDescription2 =    customers.Join(orders,
  new Standard(){ StandardID = 2, StandardName="Standard 2"},
  new Standard(){ StandardID = 3, StandardName="Standard 3"}
  };
+```
 
-//Method Syntax
-// Keep the outer group based on what do you want to pivot around
-// Here we are pivoting aroung StandardName and thus keeping standardList as the outerkey
-
+**Method Syntax**
+1. Keep the outer group based on what do you want to pivot around
+2. Here we are pivoting aroung StandardName and thus keeping standardList as the outerkey
+```
  var groupJoin = standardList.GroupJoin(studentList, 
     std => std.StandardID, //outerkey
     stud => stud.StandardID, //innerKey
@@ -3291,21 +3295,21 @@ var customerDescription2 =    customers.Join(orders,
 	        Console.WriteLine(item.StudentName);
 	    }
 	}
-	
-		/*
-		 ===output===
-		    Standard 1
-		    John
-		    Moin
-		
-		    Standard 2
-		    Bill
-		    Ram
-		
-		    Standard 3
-		 */
+```	
+ ===output===
+    Standard 1
+    John
+    Moin
 
-// Query Syntax
+    Standard 2
+    Bill
+    Ram
+
+    Standard 3
+		
+
+**Query Syntax**
+```
 var groupJoin = from std in standardList 
                     join s in studentList 
                     on std.StandardID equals s.StandardID
