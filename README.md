@@ -3186,8 +3186,10 @@ foreach (var ageGroup in groupedResult) {
 
 
 ### Join
+[Good source of revision](https://www.youtube.com/watch?v=Te2o5qakvZk&list=PL6n9fhu94yhWi8K02Eqxp3Xyh_OmQ0Rp6&index=22&ab_channel=kudvenkat)
+
 1. The Join operator operates on two collections, inner collection & outer collection.
-2. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
+2. It **returns a new collection that contains matching elements from both the collections** which satisfies specified expression.
 3. Has 5 params to take care of
 	- outer
 	- inner
@@ -3199,6 +3201,7 @@ Examples:
 [Example 1](https://github.com/codepks/LearningCSharp/blob/main/LINQ%20Examples/Example%201.cs)
 
 **Syntax 1**<br>
+
 ```
 var innerJoin = studentList.Join(// outer sequence 
                       standardList,  			// inner sequence 
