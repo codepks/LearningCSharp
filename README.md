@@ -3296,7 +3296,8 @@ Here we take care of all the non-matching elements too
 	    }
 	}
 ```	
- ===output===
+
+ **Output**
     Standard 1
     John
     Moin
