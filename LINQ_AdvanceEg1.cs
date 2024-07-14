@@ -50,9 +50,10 @@ class Program
                                       join adcHaze in adcHazeData
                                       //Tell linking condition
                                       on new { adcNorm.Collector, adcNorm.Throughtput} equals new { adcHaze.Collector, adcHaze.Throughtput }
-                                      // Tell how your output should be like
+                                      // Tell how your output list should be like
                                       select new {  adcNorm.Throughtput, 
-                                                    adcNorm.Collector, adcNorm.ADCInValue,
+                                                    adcNorm.Collector, 
+                                                        adcNorm.ADCInValue,
                                                     adcRPPMValue = adcNorm.ADCOutValue / adcHaze.ADCOutValue }; 
 
 
