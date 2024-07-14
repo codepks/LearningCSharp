@@ -3236,8 +3236,11 @@ var customerDescription =     from cust in customers
 var customerDescription2 =    customers.Join(orders,
 			      cust => cust.Name,		//key selector
 			      od => od.CustomerName,		//key selector
-			      (cust, od) => new { cust.Name, cust.Description });
+			      //order of params should be same as key selectors
+			      (cust, od) => new { cust.Name, cust.Description }); 
 ```
 
 1. The **key selector** for the outer sequence `student => student.StandardID` indicates that take StandardID field of each elements of studentList should be match with the key of inner sequence `standard => standard.StandardID` . If value of both the key field is matched then include that element into **result**.
 2. The **last parameter** in Join method is an expression to formulate the **result**. In the above example, result selector includes `StudentName` and `StandardName` property of both the sequence.
+
+### Group Join
