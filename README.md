@@ -3183,6 +3183,8 @@ foreach (var ageGroup in groupedResult) {
 }
 ```
 
+
+
 ### Join
 1. The Join operator operates on two collections, inner collection & outer collection.
 2. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
@@ -3244,6 +3246,8 @@ var customerDescription2 =    customers.Join(orders,
 2. The **last parameter** in Join method is an expression to formulate the **result**. In the above example, result selector includes `StudentName` and `StandardName` property of both the sequence.
 
 ### Group Join
+[Understand here](https://www.youtube.com/watch?v=Da3akpqjaR4&list=PL6n9fhu94yhWi8K02Eqxp3Xyh_OmQ0Rp6&index=21&ab_channel=kudvenkat)
+
 ```
  IList<Student> studentList = new List<Student>() {
  new Student() { StudentID = 1, StudentName = "John", StandardID =1 },
@@ -3260,14 +3264,43 @@ var customerDescription2 =    customers.Join(orders,
  };
 
 //Method Syntax
- var groupJoin = standardList.GroupJoin(studentList,  //inner sequence
-                                 std => std.StandardID, //outerKeySelector 
-                                 s => s.StandardID,     //innerKeySelector
-                                 (std,studentsGroup) => new // resultSelector 
-                                 {
-                                     StandarFulldName = std.StandardName,
-                                     Students = studentsGroup
-                                 });
+// Keep the outer group based on what do you want to pivot around
+// Here we are pivoting aroung StandardName and thus keeping standardList as the outerkey
+
+ var groupJoin = standardList.GroupJoin(studentList, 
+    std => std.StandardID, //outerkey
+    stud => stud.StandardID, //innerKey
+    (stdName, studentNameGroup) => new // outerKey Object, InnerKey list
+    {
+        //creating the properties for the new list
+        StandardNames = stdName.StandardName, // using the StandardName property
+        StudentNames = studentNameGroup         // using the studentName property
+    } 
+                                        );
+
+	// groupJoin consists of groupings of Students based on StandardName
+	
+	foreach(var stdNames in groupJoin)
+	{
+	    Console.WriteLine( stdNames.StandardNames ); //printing the outerkey which is a group head
+	    foreach (var item in stdNames.StudentNames) //printing the group segregation
+	    {
+	        Console.WriteLine(item.StudentName);
+	    }
+	}
+	
+		/*
+		 ===output===
+		    Standard 1
+		    John
+		    Moin
+		
+		    Standard 2
+		    Bill
+		    Ram
+		
+		    Standard 3
+		 */
 
 // Query Syntax
 var groupJoin = from std in standardList 
@@ -3285,6 +3318,8 @@ var groupJoin = from std in standardList
          Console.WriteLine(stud.StudentName);
  }
 ```
+In the code above, based **StandardName** groupings in studentList has been made.
+
 1. The **key selector** for the outer sequence `standard => standard.StandardID` indicates that **StandardID** field of each elements in standardList should be match with the key of inner sequence studentList `student => student.StandardID`
 2. result selector includes grouped collection `studentGroup` and `StandardName`
 
