@@ -1,5 +1,5 @@
 // Learning join operation in LINQ expressions
-// Join the two list and get a new list with ADCoutvalue in adcInData is divided by ADCOutValueof adcHazeData
+
 using System;
 
 class Program
@@ -46,9 +46,14 @@ class Program
         // Join the two list and get a new list with ADCoutvalue in adcInData is divided by ADCOutValueof adcHazeData
 
         var adcInDataDivadcHazeData = from adcNorm in adcInData
-                                      join adcHaze in adcHazeData   //holding elements from both the lists
-                                      on new { adcNorm.Collector, adcNorm.Throughtput} equals new { adcHaze.Collector, adcHaze.Throughtput } //Tell linking condition
-                                      select new { adcNorm.Throughtput, adcNorm.Collector, adcNorm.ADCInValue,adcRPPMValue = adcNorm.ADCOutValue / adcHaze.ADCOutValue };
+                                      //holding elements from both the lists
+                                      join adcHaze in adcHazeData
+                                      //Tell linking condition
+                                      on new { adcNorm.Collector, adcNorm.Throughtput} equals new { adcHaze.Collector, adcHaze.Throughtput }
+                                      // Tell how your output should be like
+                                      select new {  adcNorm.Throughtput, 
+                                                    adcNorm.Collector, adcNorm.ADCInValue,
+                                                    adcRPPMValue = adcNorm.ADCOutValue / adcHaze.ADCOutValue }; 
 
 
         foreach ( var adc in  adcInDataDivadcHazeData )
