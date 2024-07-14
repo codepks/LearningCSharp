@@ -3188,4 +3188,4 @@ foreach (var ageGroup in groupedResult) {
 2. It **returns a new collection that contains elements from both the collections** which satisfies specified expression.
 
 Examples:
-[source 1](LINQ_AdvanceEg1.cs)
+[source 1](LINQ Examples/Example 1.cs)
