@@ -3345,3 +3345,6 @@ In the code above, based **StandardName** groupings in studentList has been made
 # Keywords
 `UpdateTriggerSouce=PropertyChanged`
 this continously calls the property update on each new number press
+
+# Finding
+In UI, on loading it first falls in the constructor and then the property call triggers i.e the constructor values are updated first and then the property values
