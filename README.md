@@ -3342,3 +3342,6 @@ In the code above, based **StandardName** groupings in studentList has been made
 2. result selector includes grouped collection `studentGroup` and `StandardName`
 
 
+# Keywords
+`UpdateTriggerSouce=PropertyChanged`
+this continously calls the property update on each new number press
