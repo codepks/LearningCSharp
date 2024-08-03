@@ -2116,13 +2116,14 @@ namespace RectangleApplication {
 }
 ```
 # IEnumerable
-1. IEnumerable in C# is an interface that defines one method: GetEnumerator(), which returns an IEnumerator object.
-2. This interface is found in the System.Collections namespace and is a key part of the .NET Framework.
-3. It allows you to iterate over a collection of objects using constructs like foreach loops12.
-4. When you implement IEnumerable<T>, you can use it to create LINQ queries or leverage the yield keyword (for C# only) to build efficient iterators
-5.  IEnumerable is read-only and List is not.
-6.  If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
-7.  Both List<T> and ArrayList implement IEnumberable
+1. It is like a read only list
+2. IEnumerable in C# is an interface that defines one method: GetEnumerator(), which returns an IEnumerator object.
+3. This interface is found in the System.Collections namespace and is a key part of the .NET Framework.
+4. It allows you to iterate over a collection of objects using constructs like foreach loops12.
+5. When you implement IEnumerable<T>, you can use it to create LINQ queries or leverage the yield keyword (for C# only) to build efficient iterators
+6.  IEnumerable is read-only and List is not.
+7.  If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
+8.  Both List<T> and ArrayList implement IEnumberable
 
 # IEnumerable vs IList vs ICollection
 ## IEnumerable
