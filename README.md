@@ -3342,4 +3342,15 @@ In the code above, based **StandardName** groupings in studentList has been made
 1. The **key selector** for the outer sequence `standard => standard.StandardID` indicates that **StandardID** field of each elements in standardList should be match with the key of inner sequence studentList `student => student.StandardID`
 2. result selector includes grouped collection `studentGroup` and `StandardName`
 
+# Keywords
+## [RecordElementIgnore] 
+makes your intent clear to other developers (or to your future self) that a specific property should not be serialized
 
+## Deserialization
+1. It is a process of converting serial data or a byte stream into a data structure
+2. The data is typically in a serialized format such as JSON, XML, or binary
+
+Example:
+1. Loading configuration data
+2. Data is stored in a serialized format in a JSON format
+3. We deserialize it to store it in a sttructure format
