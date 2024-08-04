@@ -3354,3 +3354,10 @@ Example:
 1. Loading configuration data
 2. Data is stored in a serialized format in a JSON format
 3. We deserialize it to store it in a sttructure format
+
+## Expression
+```
+public static Expression<Func<DFNormBundleItem, DFNormResultItem>>
+            ResultItem => x => x._resultItems[0];
+```
+In the code above wherever ResultItem is used the lambda expression runs
