@@ -3361,3 +3361,39 @@ public static Expression<Func<DFNormBundleItem, DFNormResultItem>>
             ResultItem => x => x._resultItems[0];
 ```
 In the code above wherever ResultItem is used the lambda expression runs
+
+## ??  null coalescing operator
+```
+var result = nullableValue ?? defaultValue;
+```
+1. If nullableValue is not null, the result will be nullableValue.
+2. If nullableValue is null, the result will be defaultValue.
+
+Example 1
+```
+ string displayName = name ?? defaultName;
+```
+`diplayname` is nullable so it will check if name is null, if it is then it will move next for non-null value i.e. defaultName and if it is non-null then `displayName` will be assigned `defaultName`
+
+Example 2
+```
+string name = null;  
+string nickname = null;  
+string defaultName = "Guest";  
+
+string displayName = name ?? nickname ?? defaultName;  
+// Result will be "Guest" since both name and nickname are null  
+Console.WriteLine(displayName); // Output: Guest
+```
+
+Using along with conditional operator
+```
+class User  
+{  
+    public string? Name { get; set; }  
+}  
+
+User user = null;  
+string displayName = user?.Name ?? "Unknown User"; // If user is null, displayName will be "Unknown User"  
+Console.WriteLine(displayName);
+```
