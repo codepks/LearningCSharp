@@ -3397,3 +3397,17 @@ User user = null;
 string displayName = user?.Name ?? "Unknown User"; // If user is null, displayName will be "Unknown User"  
 Console.WriteLine(displayName);
 ```
+
+## Expression Bodied Members
+```
+public TimeSpan Length  
+{  
+    get { return EndTime.Subtract(StartTime); }  
+}
+``
+The code above can be replaced with :
+```
+public TimeSpan Length => EndTime.Subtract(StartTime);
+```
+
+The => syntax in C# is known as an expression-bodied member. 
