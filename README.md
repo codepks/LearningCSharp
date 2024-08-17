@@ -241,6 +241,12 @@ The main use of nullable type is in database applications. Suppose, in a table a
 It comes under value type.
 
 # Keywords
+## Implementing interface via Lambda expression
+
+```
+object ICloneable.Clone() => Clone(); //This line implements the Clone method from the ICloneable interface
+```
+
 ## is keyword
 It checks if the object is of the same type as the type it is checked against.
 
