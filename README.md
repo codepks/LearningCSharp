@@ -247,6 +247,16 @@ It comes under value type.
 object ICloneable.Clone() => Clone(); //This line implements the Clone method from the ICloneable interface
 ```
 
+Creating shallow copy of current instance
+```
+public FinePSFConfigItem Clone()
+{
+    var clone = (FinePSFConfigItem) MemberwiseClone();
+    clone.IsSelected = false;
+    return clone;
+}
+```
+
 ## is keyword
 It checks if the object is of the same type as the type it is checked against.
 
