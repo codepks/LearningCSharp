@@ -1273,7 +1273,8 @@ namespace ExtensionMethods
 ```
 
 ## Multicast Delegates
-It is used to add more subscription of the functions to the delegates
+It is used to add more subscription of the functions to the delegates.
+Functions subscribe to events ia delegates
 ```
 namespace ExtensionMethods
 {
