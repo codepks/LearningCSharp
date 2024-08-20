@@ -3596,4 +3596,7 @@ Received : World
 
 **Obsever**
 1. The observer has to implement the interface `IObserver<T>`
-2. 
+2. For complement implementation he has to implement
+ - `OnNext` : which supplies the observer with new or current information
+ - `OnError` : which informs the observer that eror has occurred
+ - `OnCompleted` : which indicates that the provider has finished sending the notifications
