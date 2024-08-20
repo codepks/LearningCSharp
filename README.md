@@ -3558,3 +3558,32 @@ public TimeSpan Length => EndTime.Subtract(StartTime);
 ```
 
 The => syntax in C# is known as an expression-bodied member. 
+
+# Reactive Programing
+## Subject
+In the context of Reactive Extensions for .NET (Rx), a Subject<T> is a particular type of observable that can act both as an observer and an observable. Subject<T> allows you to push notifications to subscribers while also being able to subscribe to other observables
+```
+using System;  
+using System.Reactive.Subjects;  
+
+class Program  
+{  
+    static void Main()  
+    {  
+        var subject = new Subject<string>();  
+
+        subject.Subscribe(value => Console.WriteLine($"Received: {value}"));  
+
+        subject.OnNext("Hello");  
+        subject.OnNext("World");  
+
+        subject.OnCompleted(); // Marks the subject as completed  
+    }  
+}
+```
+
+Output
+```
+Received : Hello
+Received : World
+```
