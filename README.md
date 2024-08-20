@@ -3551,7 +3551,7 @@ public TimeSpan Length
 {  
     get { return EndTime.Subtract(StartTime); }  
 }
-``
+```
 The code above can be replaced with :
 ```
 public TimeSpan Length => EndTime.Subtract(StartTime);
