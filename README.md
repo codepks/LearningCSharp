@@ -3360,6 +3360,12 @@ In the code above, based **StandardName** groupings in studentList has been made
 2. result selector includes grouped collection `studentGroup` and `StandardName`
 
 # Keywords
+## INotifyPropertyChanged
+1. The moment you make a strcture/class inherit forlm INotifyPropertyChanged, you make the class observable.
+2. You get ```event PropertyChangedEventHandler PropertyChanged``` event
+3. You can subscribe to the event with your functions, if your function has the same signature as ```public delegate void PropertyChangedEventHandler(object sender, PropertyChangedEventArgs e);```
+4. Now all you have to do it invoke your event in any of the property set calls and BKM is to call the RaisePropertyChanged method ```PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));```
+
 ## [RecordElementIgnore] 
 makes your intent clear to other developers (or to your future self) that a specific property should not be serialized
 
