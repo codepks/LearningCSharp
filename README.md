@@ -739,6 +739,130 @@ class Company {
 }
 ```
 
+## Using ICloneable
+- We can do shallow copy and deep copying using ICloneable
+- ICloneable's memeberwise clone only does shallow copy and we need to explicitly write logic for deep copy
+
+The interface
+```
+public interface ICloneable  
+{  
+    object Clone();  
+}
+```
+
+Implemenetation for shallow copy
+```
+public class Person : ICloneable  
+{  
+    public string Name { get; set; }  
+    public int Age { get; set; }  
+
+    public object Clone()  
+    {  
+        // Return a shallow copy of the current object  
+        return this.MemberwiseClone();  
+    }  
+}
+```
+Implementation for deep copy
+```
+public class Person : ICloneable  
+{  
+    public string Name { get; set; }  
+    public int Age { get; set; }  
+    public Address Address { get; set; }  
+
+    public object Clone()  
+    {  
+        Person clonedPerson = (Person)this.MemberwiseClone();  
+        clonedPerson.Address = (Address)this.Address.Clone(); // Assuming Address also implements ICloneable  
+        return clonedPerson;  
+    }  
+}  
+
+public class Address : ICloneable  
+{  
+    public string Street { get; set; }  
+    public string City { get; set; }  
+
+    public object Clone() => this.MemberwiseClone();  
+}
+```
+
+## Deepcopy using Serialization
+
+```
+using System;  
+using System.IO;  
+using System.Runtime.Serialization;  
+using System.Runtime.Serialization.Formatters.Binary;  
+
+[Serializable]  
+public class Address  
+{  
+    public string Street { get; set; }  
+    public string City { get; set; }  
+}  
+
+[Serializable]  
+public class Person  
+{  
+    public string Name { get; set; }  
+    public int Age { get; set; }  
+    public Address Address { get; set; }  
+
+    // Method to clone the object deeply using serialization  
+    public Person DeepClone()  
+    {  
+        using (MemoryStream memoryStream = new MemoryStream())  
+        {  
+            // Create a new BinaryFormatter for serialization  
+            IFormatter formatter = new BinaryFormatter();  
+            
+            // Serialize the current object to the MemoryStream  
+            formatter.Serialize(memoryStream, this);  
+            
+            // Reset the stream position to the beginning before deserialization  
+            memoryStream.Seek(0, SeekOrigin.Begin);  
+
+            // Deserialize the object from the MemoryStream  
+            return (Person)formatter.Deserialize(memoryStream);  
+        }  
+    }  
+}  
+
+class Program  
+{  
+    static void Main(string[] args)  
+    {  
+        // Create an instance of Person  
+        Person original = new Person  
+        {  
+            Name = "John Doe",  
+            Age = 30,  
+            Address = new Address  
+            {  
+                Street = "123 Main St",  
+                City = "Anytown"  
+            }  
+        };  
+
+        // Clone the original person  
+        Person cloned = original.DeepClone();  
+
+        // Modify the clone  
+        cloned.Name = "Jane Doe";  
+        cloned.Address.Street = "456 Elm St";  
+
+        // Output both objects to demonstrate they are independent  
+        Console.WriteLine($"Original: {original.Name}, Age: {original.Age}, Address: {original.Address.Street}, {original.Address.City}");  
+        Console.WriteLine($"Cloned: {cloned.Name}, Age: {cloned.Age}, Address: {cloned.Address.Street}, {cloned.Address.City}");  
+    }  
+}
+```
+
+
 ## Creating array of objects
 ```
 Circle[] circleArray = new Circle[2];
