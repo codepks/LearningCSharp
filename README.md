@@ -3602,6 +3602,12 @@ Received : World
  - `OnCompleted` : which indicates that the provider has finished sending the notifications
 
 # Nullable double
+## Declaration
+```
+double? _bicellTargetNew = null;
+```
+
+## Use Case
 ```
 BicellTargetPrev = latestResult?.BicellTarget;
 ```
