@@ -3600,3 +3600,16 @@ Received : World
  - `OnNext` : which supplies the observer with new or current information
  - `OnError` : which informs the observer that eror has occurred
  - `OnCompleted` : which indicates that the provider has finished sending the notifications
+
+# Nullable double
+```
+BicellTargetPrev = latestResult?.BicellTarget;
+```
+1. Error : cannot convert double? to double in the line below
+2. A nullable double can hold double value as well as null value
+3. So we need to take care what happens when double is null
+
+Solution
+```
+BicellTargetPrev = latestResult?.BicellTarget ?? defaultValue; // use a specific default value
+```
