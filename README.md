@@ -241,6 +241,13 @@ The main use of nullable type is in database applications. Suppose, in a table a
 It comes under value type.
 
 # Keywords
+## Importance of Assembly Name
+1. Whenver we build a .dll file we provide the important meta data along
+2. It consists of Assembly name
+3. The next need is of the class or interface name in order to access the object
+4. So full path of the object become `AssemblyName.ClassName`
+
+
 ## Implementing interface via Lambda expression
 
 ```
