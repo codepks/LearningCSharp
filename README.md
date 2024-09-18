@@ -3638,3 +3638,87 @@ BicellTargetPrev = latestResult?.BicellTarget ?? defaultValue; // use a specific
 
 3. **Using interfaces** : Reduces coupling and we can achieve single point of changes
 4. **Using Containers** : We can map the object to the interface and predecide which object to be called on the usage of the interface using autofac. You don't get to see `new` keyword
+
+
+# Object Marshalling
+Without MarshalByRefObject
+In this example, we will create a simple remote object that is passed by value, which means the object is serialized and deserialized when sent across the application domain.
+
+## C# Without MarshalByRefObject
+```
+using System;  
+using System.Runtime.Remoting;  
+
+[Serializable]  
+public class MyRemoteObject  
+{  
+    public int Value { get; set; }  
+
+    public void Increment()  
+    {  
+        Value++;  
+    }  
+}  
+
+class Program  
+{  
+    static void Main()  
+    {  
+        MyRemoteObject obj = new MyRemoteObject { Value = 10 };  
+        Console.WriteLine("Initial Value: " + obj.Value);  
+
+        // Simulating remote call  
+        MyRemoteObject remoteObj = obj; // This creates a copy  
+        remoteObj.Increment();  
+
+        Console.WriteLine("After Increment (local): " + obj.Value); // Output: 10  
+        Console.WriteLine("After Increment (remote): " + remoteObj.Value); // Output: 11  
+    }  
+}
+```
+
+## With MarshalByRefObject
+In this example, we will create a remote object that derives from MarshalByRefObject, allowing the client to interact with the server-side instance directly.
+
+C# With MarshalByRefObject
+```
+using System;  
+using System.Runtime.Remoting;  
+
+public class MyRemoteObject : MarshalByRefObject  
+{  
+    public int Value { get; set; }  
+
+    public void Increment()  
+    {  
+        Value++;  
+    }  
+}  
+
+class Program  
+{  
+    static void Main()  
+    {  
+        MyRemoteObject obj = new MyRemoteObject { Value = 10 };  
+        Console.WriteLine("Initial Value: " + obj.Value);  
+
+        // Simulating remote call  
+        MyRemoteObject remoteObj = obj; // This does not create a copy  
+        remoteObj.Increment();  
+
+        Console.WriteLine("After Increment (local): " + obj.Value); // Output: 11  
+        Console.WriteLine("After Increment (remote): " + remoteObj.Value); // Output: 11  
+    }  
+}
+```
+
+## Key Differences
+### Without MarshalByRefObject:
+
+The MyRemoteObject is serialized when passed to the remote context, creating a copy.
+Changes made to the remote object do not affect the original object.
+
+### With MarshalByRefObject:
+
+The MyRemoteObject is passed by reference, allowing the client to interact with the same instance.
+Changes made to the remote object affect the original object, as they refer to the same instance.
