@@ -3595,6 +3595,20 @@ Received : Hello
 Received : World
 ```
 
+
+Complicated Example<br>
+```
+rivate void SubscribeToEvents()  
+{  
+    ProgressVisibilityCommand.CanExecuteChanged += (sender, args) =>  
+    {  
+        RaisePropertyChanged(nameof(ProgressVisibility));  
+    };  
+}
+```
+1. `CanExecuteChanged` is from `EventHandler` delegate and has parameters `senders` and `args`
+2. Only same signature functions can subscribe to CanExecuteChanged event
+
 # Observer Design Pattern
 
 **Notification Provider**
