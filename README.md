@@ -1791,6 +1791,10 @@ The LINQ returns IOrderedIEnumerable, which is converted to Array using ToArray(
 ```
 arr = arr.OrderByDescending(c => c).ToArray();
 ```
+
+### Select
+The Select method is a LINQ method used to project (transform) each item in the source collection into a new form.
+
 ### Ordering, Summing, Selecting
 ```
 class Person
