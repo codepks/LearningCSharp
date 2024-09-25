@@ -2279,6 +2279,7 @@ namespace RectangleApplication {
 6.  IEnumerable is read-only and List is not.
 7.  If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
 8.  Both List<T> and ArrayList implement IEnumberable
+9.  You cannot initialize list with IEnumberable. But you can achieve it with putting `ToList()` at the end
 
 # IEnumerable vs IList vs ICollection
 ## IEnumerable
