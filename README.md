@@ -1798,6 +1798,12 @@ The Select method is a LINQ method used to project (transform) each item in the 
 ### SelectMany
 **Purpose**: SelectMany is used to project each element of a collection to an IEnumerable<T> and flatten the resulting sequences into a single collection. It effectively takes a collection of collections (or an array of arrays) and flattens it into a single collection.
 
+### ForEach
+Shorter way of writing for loop
+```
+ListOfSomething.ForEach(item=>item)
+```
+
 ### Ordering, Summing, Selecting
 ```
 class Person
