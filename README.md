@@ -1804,6 +1804,9 @@ Shorter way of writing for loop
 ListOfSomething.ForEach(item=>item)
 ```
 
+### First
+The `First` method is part of LINQ (Language Integrated Query) in C# and is used to return the first element in a sequence that satisfies a specified condition.
+
 ### Ordering, Summing, Selecting
 ```
 class Person
