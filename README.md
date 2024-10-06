@@ -1804,6 +1804,20 @@ Shorter way of writing for loop
 ListOfSomething.ForEach(item=>item)
 ```
 
+
+Using ForEach for Dictionaries
+```
+IReadOnlyDictionary<IFinePSFCombination, IFinePSFConfigItem> configItems = ...; // Assume this is initialized  
+
+// Iterate over each key-value pair in the dictionary  
+configItems.ToList().ForEach(kvp =>  
+{  
+    IFinePSFCombination key = kvp.Key;  
+    IFinePSFConfigItem value = kvp.Value;   
+});
+```
+
+
 ### First
 The `First` method is part of LINQ (Language Integrated Query) in C# and is used to return the first element in a sequence that satisfies a specified condition.
 
