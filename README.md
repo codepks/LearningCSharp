@@ -796,6 +796,10 @@ public class Address : ICloneable
     public object Clone() => this.MemberwiseClone();  
 }
 ```
+## Serializing
+What does adding annotattion of "Serializable" to a class do?
+	
+Doing it makes it possible to convert the structure to a database structure which could be a SQL data structure or XML data structure!
 
 ## Deepcopy using Serialization
 
