@@ -264,6 +264,36 @@ public FinePSFConfigItem Clone()
 }
 ```
 
+## Memberwise vs copyfrom
+
+**What is difference between copyfrom and memberwiseclone in the code below:**
+```
+public class DefectAttributes : DSViewModelBase, IDefectAttributes
+   {
+        public object Clone() => MemberwiseClone();
+
+        DefectAttributes() : base() { }
+
+        DefectAttributes(IDefectAttributes defectAttributes) : base()
+        {
+            CopyFrom(defectAttributes);
+        }
+
+        private void CopyFrom(IDefectAttributes defectAttributes)
+        {
+            RToPlanet = defectAttributes.RToPlanet;
+            RThetaToPlanet = defectAttributes.RThetaToPlanet;
+            AdcRatio = defectAttributes.AdcRatio;
+            Ee = defectAttributes.Ee;
+            Adc = defectAttributes.Adc;
+        }
+```
+
+1. MemberwiseClone
+Purpose: The MemberwiseClone method creates a shallow copy of the current object. This method is part of the System.Object class and is protected, meaning it can only be called from within the class itself or a derived class.
+
+2. CopyFrom
+Purpose: The CopyFrom method is a custom method defined in the DefectAttributes class. It takes an instance of IDefectAttributes (presumably another DefectAttributes instance or a compatible interface) and copies specific values from that instance to the current instance.
 ## is keyword
 It checks if the object is of the same type as the type it is checked against.
 
