@@ -351,6 +351,97 @@ object[] obj = new object[5];
 
 **is** operator returns boolean whereas **as** operator returns type itself
 
+## Testing Memberwise Clone
+1. Here we have create two structure one without the ICloneable interface and one with the ICloneable interface.
+2. In the main function we have create a Point list
+3. Created another list which is copying frmo the original list but if the original Point list is affected then the Test like alos gets affected
+4. If we try to do the above thing with the structure which has ICloneable interface implemented then it wouldn't happen
+
+
+```
+using System;
+
+class Program
+{
+    class Point
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public Point(int x, int y) { X = x; Y = y; }
+    }
+
+    
+    class PointClonable : ICloneable
+    {
+        public PointClonable(int x, int y) { X = x; Y = y; }
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        List<Point> points = new List<Point>(   new Point [] { new Point(1, 2), 
+                                                new Point(3, 4), 
+                                                new Point(5, 6), 
+                                                new Point(7, 8) } );
+
+        foreach (Point item in points)
+            Console.WriteLine(item.X + " " + item.Y);
+
+        List<Point> TestPointCloning = new List<Point>();
+
+        foreach (Point item in points)
+            TestPointCloning.Add((Point)item);
+
+        Console.WriteLine("Before change");
+        foreach (Point item in TestPointCloning)
+            Console.WriteLine(item.X + " " + item.Y);
+        points[0].X = 10;
+        points[0].Y = 20;
+
+        //seems to affect the TestList as well
+        Console.WriteLine("After change");
+        foreach (Point item in TestPointCloning)
+            Console.WriteLine(item.X + " " + item.Y);
+
+
+
+        Console.WriteLine("Testing Cloning thing");
+
+        List<PointClonable> PointClonables = new List<PointClonable>(new PointClonable[] { new PointClonable(1, 2),
+                                                new PointClonable(3, 4),
+                                                new PointClonable(5, 6),
+                                                new PointClonable(7, 8) });
+
+        foreach (PointClonable item in PointClonables)
+            Console.WriteLine(item.X + " " + item.Y);
+
+        List<PointClonable> TestPointClonableCloning = new List<PointClonable>();
+
+        foreach (PointClonable item in PointClonables)
+            TestPointClonableCloning.Add((PointClonable)item.Clone());
+
+        Console.WriteLine("Before change");
+        foreach (PointClonable item in TestPointClonableCloning)
+            Console.WriteLine(item.X + " " + item.Y);
+        PointClonables[0].X = 10;
+        PointClonables[0].Y = 20;
+
+        //seems to affect the TestList as well
+        Console.WriteLine("After change");
+        foreach (PointClonable item in TestPointClonableCloning)
+            Console.WriteLine(item.X + " " + item.Y);
+
+    }
+}
+```
+
 ## Static keyword
 
 ### static classes
