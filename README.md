@@ -3801,3 +3801,73 @@ Changes made to the remote object do not affect the original object.
 
 The MyRemoteObject is passed by reference, allowing the client to interact with the same instance.
 Changes made to the remote object affect the original object, as they refer to the same instance.
+
+
+# Reflection
+```
+using System;  
+using System.Reflection;  
+
+public class SampleClass  
+{  
+    public int MyProperty { get; set; }  
+
+    public void MyMethod()  {  
+        Console.WriteLine("Hello from MyMethod");  
+    }  
+}  
+
+class Program  
+{  
+    static void Main(string[] args)  {  
+        // Create an instance of SampleClass  
+        var sample = new SampleClass();  
+
+        // Get the type of SampleClass  
+        Type type = sample.GetType();  
+
+        // Display class name  
+        Console.WriteLine("Class Name: " + type.Name);  
+
+        // Display properties  
+        Console.WriteLine("Properties:");  
+        foreach (PropertyInfo prop in type.GetProperties())  {  
+            Console.WriteLine($" - {prop.Name} (Type: {prop.PropertyType})");  
+        }  
+
+        // Display methods  
+        Console.WriteLine("Methods:");  
+        foreach (MethodInfo method in type.GetMethods())  {  
+            Console.WriteLine($" - {method.Name}");  
+        }  
+
+        // Set property value using reflection  
+        PropertyInfo property = type.GetProperty("MyProperty");  
+        property.SetValue(sample, 10);  
+
+        // Invoke MyMethod using reflection  
+        MethodInfo methodInfo = type.GetMethod("MyMethod");  
+        methodInfo.Invoke(sample, null);  
+        
+        // Get the value of MyProperty  
+        Console.WriteLine($"MyProperty Value: {property.GetValue(sample)}");  
+    }  
+}
+```
+OUTPUT
+
+```
+Class Name: SampleClass
+Properties:
+ - MyProperty (Type: System.Int32)
+Methods:
+ - get_MyProperty
+ - set_MyProperty
+ - MyMethod
+ - GetType
+ - ToString
+ - Equals
+ - GetHashCode
+Hello from MyMethod
+MyProperty Value: 10
+```
