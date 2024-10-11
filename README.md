@@ -717,6 +717,8 @@ public partial class Geeks {
 ```
 
 ## Shallow and Deep Copy - Different from C++
+[source](https://www.wwt.com/article/how-to-clone-objects-in-dotnet-core)
+
 If we code like this, then both object1 and object2 will point to the same address:
 ```
  Company c1 = new Company(548, "GeeksforGeeks",
@@ -826,7 +828,7 @@ public class Address : ICloneable
     public object Clone() => this.MemberwiseClone();  
 }
 ```
-## Serializing
+## Serializing 1
 What does adding annotattion of "Serializable" to a class do?
 	
 Doing it makes it possible to convert the structure to a database structure which could be a SQL data structure or XML data structure!
@@ -903,6 +905,31 @@ class Program
 }
 ```
 
+## Serializing 2
+```
+using Newtonsoft.Json;
+
+public static class ExtensionMethods
+{
+  public static T DeepCopy<T>(this T self)
+  {
+    var serialized = JsonConvert.SerializeObject(self);
+    return JsonConvert.DeserializeObject<T>(serialized);
+  }
+}
+```
+Now to make a clone, call .DeepCopy() on the object. The following example creates a deep copy of an instance of MyObject, and then alters properties on the clone. The original MyObject instance is therefore not mutated.
+```
+static void Main(string[] args)
+{
+  var myObj = new MyObject("original", new NestedObjectProp("nestedPropA", "nestedPropB"));
+  
+  var myObjClone = myObj.DeepCopy();
+  
+  myObjClone.ObjectProp = "changed objectProp on clone";
+  myObjClone.NestedObjectProp.NestedPropB = "changed nestedPropB on clone";
+}
+```
 
 ## Creating array of objects
 ```
