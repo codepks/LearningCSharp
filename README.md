@@ -3344,6 +3344,17 @@ The extension method `Where()` is defined in the Enumerable class.
 
 [image source 2](https://www.tutorialsteacher.com/Content/images/linq/lambda-expression-2.png)
 
+### Making a list readonly
+```
+IReadOnlyCollection<Person> people = new List<Person>  
+        {  
+            new Person { Name = "Alice", Age = 30 },  
+            new Person { Name = "Bob", Age = 25 },  
+            new Person { Name = "Charlie", Age = 35 },  
+            new Person { Name = "Diana", Age = 28 }  
+        }.AsReadOnly(); 
+```
+
 ### Multiple Params
 ```
 (s, youngAge) => s.Age >= youngage;
