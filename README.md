@@ -195,6 +195,9 @@ For converting like int to float, the conversions are implicit and no keyword is
   - float to int (ToInt32)
   - double to float (ToDouble)
 
+### Casting using as vs explicit casting
+1. as will return null if the casting fails - mainly helpful in polymorphism
+2. explicit casting with throw `InvalidCastException` error if the casting fails
 
 ## Properties
 Properties can be used as if they are public data members, but they are actually special methods called accessors<br>
