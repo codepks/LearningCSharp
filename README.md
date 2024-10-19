@@ -1947,6 +1947,16 @@ The LINQ returns IOrderedIEnumerable, which is converted to Array using ToArray(
 arr = arr.OrderByDescending(c => c).ToArray();
 ```
 
+### Get the element which satifies criteria
+1. **_FirstOrDefault_**: This method returns the first element of a sequence that satisfies a specified condition or a default value if no such element is found.
+```var person1 = people.FirstOrDefault(p => p.Id == 2);```
+
+2. **_SingleOrDefault_**: This method returns the only element of a sequence that satisfies a specified condition or a default value if no such element is found. If more than one element satisfies the condition, it throws an exception.
+```var person2 = people.SingleOrDefault(p => p.Id == 4);```
+
+3. **_Where_**: This method filters a sequence of values based on a predicate. It returns all elements that meet the condition, and you can combine it with FirstOrDefault or SingleOrDefault to retrieve a specific element.
+``` var person3 = people.Where(p => p.Id == 2).FirstOrDefault();  ```
+
 ### Select
 The Select method is a LINQ method used to project (transform) each item in the source collection into a new form.
 
