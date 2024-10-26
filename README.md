@@ -4013,3 +4013,8 @@ Methods:
 Hello from MyMethod
 MyProperty Value: 10
 ```
+
+# Regex
+1. To search two keywords at once `(?=.*keyword1)(?=.*keyword2)`
+2.  If you want to make it case-insensitive, you can add `(?i)` at the beginning of your regex pattern
+3.   If your keywords contain spaces or special characters, ensure to escape them appropriately using a backslash `(\).`
