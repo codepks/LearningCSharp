@@ -3124,6 +3124,14 @@ foreach(KeyValuePair<int, string> ele1 in My_dict1)
           }
 ```
 
+## Equality Comparer
+```
+public Dictionary(IEqualityComparer<TKey> comparer);
+```
+This constructor allows you to create a new instance of a dictionary while providing a custom IEqualityComparer<TKey> for key comparisons.
+
+Now with this, you can have key to key comparisons using the equility comparer
+
 ## Sorted Dictionary
 It is like **ordered map** and uses **BST** for faster insertion and searching that's why faster but more memory taking compared to sortedList
 ```
