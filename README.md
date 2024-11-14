@@ -16,7 +16,7 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 1. CLR : For managing execution of the code
 2. Libraries : For providing set of in-build functionalities for development
 3. Managed code enviroment provides assistance like :
-	- like garbage collection
+	- like garbage collectionf
  	- type checking
  	- exception handling
  	- bounds checking
@@ -3131,6 +3131,10 @@ public Dictionary(IEqualityComparer<TKey> comparer);
 This constructor allows you to create a new instance of a dictionary while providing a custom IEqualityComparer<TKey> for key comparisons.
 
 Now with this, you can have key to key comparisons using the equility comparer
+```
+BundleItems = new Dictionary<IFinePSFCombination, FinePSFBundleItem>(new FinePSFCombinationEqualityComparer());
+```
+Now in above dictionary combination to combination combination will happen using EqualityComparer.
 
 ## Sorted Dictionary
 It is like **ordered map** and uses **BST** for faster insertion and searching that's why faster but more memory taking compared to sortedList
