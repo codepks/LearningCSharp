@@ -4030,3 +4030,33 @@ MyProperty Value: 10
 1. To search two keywords at once `(?=.*keyword1)(?=.*keyword2)`
 2.  If you want to make it case-insensitive, you can add `(?i)` at the beginning of your regex pattern
 3.   If your keywords contain spaces or special characters, ensure to escape them appropriately using a backslash `(\).`
+
+# Generics
+Generics in C# are a powerful feature that allows developers to define classes, interfaces, and methods with a placeholder for the data type
+
+## Basics
+```
+public class Util  
+{  
+    // Generic method  
+    public static T GetDefaultValue<T>()  
+    {  
+        return default(T); // Returns null for reference types, and zero for numeric types, etc.  
+    }  
+}
+```
+
+## Putting Constraints
+```
+public class BaseClass { }  
+public class DerivedClass : BaseClass { }  
+
+public class GenericExample<T> where T : BaseClass  
+{  
+    public void Display(T item)  
+    {  
+        Console.WriteLine(item.GetType());  
+    }  
+}
+```
+Where T : BaseClass: This is a constraint on the type parameter T. It specifies that any type used as T must be or must derive from BaseClass
