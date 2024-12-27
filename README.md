@@ -4060,3 +4060,13 @@ public class GenericExample<T> where T : BaseClass
 }
 ```
 Where T : BaseClass: This is a constraint on the type parameter T. It specifies that any type used as T must be or must derive from BaseClass
+
+# Attribute Name in the method parameters
+```
+private void LogMethodEntry([CallerMemberName] string callingMethod = "")
+```
+Explaination
+`[CallerMemberName]` This is an attribute that allows the method to automatically receive the name of the method that called it as a string. <br>
+If LogMethodEntry is called from another method, the name of that method will be passed to the callingMethod parameter without needing to explicitly provide it.<br>
+
+`string callingMethod = "":` This is an optional parameter with a default value of an empty string. <br>If LogMethodEntry is called without specifying a value for callingMethod, it will automatically be filled with the name of the calling method.
