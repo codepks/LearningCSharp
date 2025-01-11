@@ -4070,3 +4070,19 @@ Explaination
 If LogMethodEntry is called from another method, the name of that method will be passed to the callingMethod parameter without needing to explicitly provide it.<br>
 
 `string callingMethod = "":` This is an optional parameter with a default value of an empty string. <br>If LogMethodEntry is called without specifying a value for callingMethod, it will automatically be filled with the name of the calling method.
+
+# Action Event Code usage
+1. Suppose I want to invoke the subscribers on update and also pass them the count while invoking
+2. Invoking can be done via `Event?.Invoke()`
+3. Parameters can able be passed by making event which accepts event.
+4. Action Event by default comes with the template to do the same
+
+```
+public event Action<int> someEvent;
+
+void someFunction(int count)
+{
+	someEvent?.Invoke(count);
+}
+```
+```
