@@ -1,6 +1,5 @@
 
  Starting (entry) point of a console application is Main
- 
  float weight = 80.5f;
 
  // char is used for storing a single symbol
@@ -55,6 +54,7 @@ printing is done lie `Console.WriteLine(sumMoreDecimal);`
 		a. We need to enable unsafe option to run this:
 		unsafe
 ```		
+ 
   		{ 
 		      
 		    // declare variable 
@@ -4085,4 +4085,5 @@ void someFunction(int count)
 	someEvent?.Invoke(count);
 }
 ```
-```
+
+Events can only be invoked inside the class they have been declared
