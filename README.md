@@ -4087,3 +4087,58 @@ void someFunction(int count)
 ```
 
 Events can only be invoked inside the class they have been declared
+
+# Serve Locator Pattern
+ This pattern is used to retrieve services or dependencies needed by a class. It acts as a centralized registry that contains references to various services, making it easier to manage and access them.
+```
+using System;
+using System.Collections.Generic;
+
+public interface ILogger
+{
+    void Log(string message);
+}
+
+public class ConsoleLogger : ILogger
+{
+    public void Log(string message) => Console.WriteLine(message);
+}
+
+public static class ServiceLocator
+{
+    private static readonly Dictionary<Type, object> services = new();
+
+    public static void Register<T>(T service) => services[typeof(T)] = service;
+
+    public static T Get<T>() => (T)services[typeof(T)];
+}
+
+public class MyService
+{
+    private ILogger _logger;
+
+    public MyService()
+    {
+        _logger = ServiceLocator.Get<ILogger>();
+    }
+
+    public void DoWork()
+    {
+        _logger.Log("Work done!");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Register the logger service
+        ServiceLocator.Register<ILogger>(new ConsoleLogger());
+
+        // Create and use the service
+        var service = new MyService();
+        service.DoWork();
+    }
+}
+
+```
